@@ -1,0 +1,5 @@
+rootProject.name = 'map'
+
+include 'map-common'
+include 'map-auth-server'
+include 'map-gateway'

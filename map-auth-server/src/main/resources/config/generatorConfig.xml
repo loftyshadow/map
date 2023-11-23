@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- Mapper生成器配置 -->
+<generatorConfiguration>
+<!--    <properties resource="mybatisGenerator/generator.properties"/>-->
+    <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 为模型生成序列化方法-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <commentGenerator>
+            <!--suppressDate是去掉生成日期那行注释-->
+            <property name="suppressDate" value="true"/>
+            <!--suppressAllComments是去掉所有的注解-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--配置数据库连接-->
+        <!-- jdbc连接 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://172.30.254.164:3306/test"
+                        userId="root"
+                        password="123456">
+            <!--高版本的 mysql-connector-java 需要设置 nullCatalogMeansCurrent=true-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+        <!--指定生成model的路径-->
+        <javaModelGenerator targetPackage="com.nmz.demo.entity"
+                            targetProject="demo/src/main/java"/>
+        <!--指定生成mapper.xml的路径-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="demo/src/main/resources/mybatis"/>
+        <!--指定生成mapper接口的的路径-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.nmz.demo.mapper"
+                             targetProject="demo/src/main/java"/>
+        <!--生成全部表tableName设为%-->
+        <table tableName="bookorder" domainObjectName="BookOrder"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!-- 注意表中的主键ID！！！！！！ -->
+            <generatedKey column="order_id" sqlStatement="MySql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

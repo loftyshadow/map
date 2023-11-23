@@ -1,0 +1,16 @@
+package com.nmz.mapauthserver.entity;
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * @Description:
+ * @Author: 聂明智
+ * @Date: 2023/9/28-20:42
+ */
+@Data
+public class SysUserRoleEntityPK implements Serializable {
+    private int userId;
+    private int roleId;
+}
