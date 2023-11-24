@@ -1,4 +1,4 @@
-package com.nmz.mapauthserver.result;
+package com.nmz.mapcommon.result;
 
 public interface IResult {
 

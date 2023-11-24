@@ -1,4 +1,4 @@
-package com.nmz.mapauthserver.result;
+package com.nmz.mapcommon.result;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

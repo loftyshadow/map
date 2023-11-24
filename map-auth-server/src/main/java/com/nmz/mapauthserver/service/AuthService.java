@@ -1,7 +1,7 @@
 package com.nmz.mapauthserver.service;
 
 import com.nmz.mapauthserver.entity.SysUserEntity;
-import com.nmz.mapauthserver.result.Result;
+import com.nmz.mapcommon.result.Result;
 import com.nmz.mapauthserver.vo.LoginVO;
 import com.nmz.mapauthserver.vo.RouteRecordRawVO;
 

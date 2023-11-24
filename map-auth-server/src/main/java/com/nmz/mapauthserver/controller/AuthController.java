@@ -1,10 +1,10 @@
 package com.nmz.mapauthserver.controller;
 
 import com.nmz.mapauthserver.entity.SysUserEntity;
-import com.nmz.mapauthserver.result.Result;
 import com.nmz.mapauthserver.service.AuthService;
 import com.nmz.mapauthserver.vo.LoginVO;
 import com.nmz.mapauthserver.vo.RouteRecordRawVO;
+import com.nmz.mapcommon.result.Result;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

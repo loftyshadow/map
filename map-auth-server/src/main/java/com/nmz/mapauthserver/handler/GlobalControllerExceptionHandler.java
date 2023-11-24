@@ -2,7 +2,7 @@ package com.nmz.mapauthserver.handler;
 
 import com.nmz.mapauthserver.exception.AuthException;
 import com.nmz.mapauthserver.exception.BaseException;
-import com.nmz.mapauthserver.result.Result;
+import com.nmz.mapcommon.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;

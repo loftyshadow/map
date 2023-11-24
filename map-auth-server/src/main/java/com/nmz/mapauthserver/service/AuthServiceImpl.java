@@ -5,7 +5,7 @@ import com.nmz.mapauthserver.entity.SysMenuEntity;
 import com.nmz.mapauthserver.entity.SysUserEntity;
 import com.nmz.mapauthserver.mapper.SysMenuMapper;
 import com.nmz.mapauthserver.mapper.SysUserRoleMapper;
-import com.nmz.mapauthserver.result.Result;
+import com.nmz.mapcommon.result.Result;
 import com.nmz.mapauthserver.utils.JwtUtils;
 import com.nmz.mapauthserver.vo.LoginVO;
 import com.nmz.mapauthserver.vo.RouteRecordRawVO;

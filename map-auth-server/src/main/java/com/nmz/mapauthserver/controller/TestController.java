@@ -1,6 +1,6 @@
 package com.nmz.mapauthserver.controller;
 
-import com.nmz.mapauthserver.result.Result;
+import com.nmz.mapcommon.result.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
