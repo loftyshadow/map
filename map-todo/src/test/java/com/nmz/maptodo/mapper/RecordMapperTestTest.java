@@ -26,7 +26,7 @@ class RecordMapperTestTest {
         TodoRecordDetail todoRecordDetail = new TodoRecordDetail();
         todoRecordDetail.setDetailChecked(true);
         todoRecordDetail.setDetailIsDelete(true);
-        todoRecordDetail.setDetailText("test");
+        todoRecordDetail.setDetailText("test123");
         todoRecordDetail.setDetailCreateTime(new Date());
         todoRecordDetail.setDetailUpdateTime(new Date());
         RecordDetailDTO recordDetailDTO = underTest.toRecordDetail(todoRecordDetail);

@@ -14,8 +14,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 
-@Getter
-@Setter
 @Entity
 @ToString
 @EntityListeners(AuditingEntityListener.class)
@@ -41,4 +39,51 @@ public class TodoRecordDetail {
     @Column(name = "detail_update_time")
     private Date detailUpdateTime;
 
+    public TodoRecordDetailId getId() {
+        return id;
+    }
+
+    public void setId(TodoRecordDetailId id) {
+        this.id = id;
+    }
+
+    public Boolean getDetailChecked() {
+        return detailChecked;
+    }
+
+    public void setDetailChecked(Boolean detailChecked) {
+        this.detailChecked = detailChecked;
+    }
+
+    public Boolean getDetailIsDelete() {
+        return detailIsDelete;
+    }
+
+    public void setDetailIsDelete(Boolean detailIsDelete) {
+        this.detailIsDelete = detailIsDelete;
+    }
+
+    public String getDetailText() {
+        return detailText;
+    }
+
+    public void setDetailText(String detailText) {
+        this.detailText = detailText;
+    }
+
+    public Date getDetailCreateTime() {
+        return detailCreateTime;
+    }
+
+    public void setDetailCreateTime(Date detailCreateTime) {
+        this.detailCreateTime = detailCreateTime;
+    }
+
+    public Date getDetailUpdateTime() {
+        return detailUpdateTime;
+    }
+
+    public void setDetailUpdateTime(Date detailUpdateTime) {
+        this.detailUpdateTime = detailUpdateTime;
+    }
 }

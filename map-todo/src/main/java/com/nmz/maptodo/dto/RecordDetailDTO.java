@@ -10,16 +10,6 @@ import lombok.ToString;
  * @Author: 聂明智
  * @Date: 2023/11/24-18:36
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class RecordDetailDTO {
-
-    private String text;
-
-    private Boolean isDelete;
-
-    private Boolean checked;
+public record RecordDetailDTO(String text, Boolean isDelete, Boolean checked) {
 
 }
