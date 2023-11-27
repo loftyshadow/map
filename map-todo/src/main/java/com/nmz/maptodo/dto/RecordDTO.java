@@ -12,19 +12,5 @@ import java.util.List;
  * @Author: 聂明智
  * @Date: 2023/11/24-18:25
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class RecordDTO {
-
-    private Long id;
-
-    private String title;
-
-    private Boolean isDelete;
-
-    private Boolean locked;
-
-    private List<RecordDetailDTO> recordDetail;
+public record RecordDTO ( Long id, String title, Boolean isDelete, Boolean locked, List<RecordDetailDTO> recordDetail){
 }

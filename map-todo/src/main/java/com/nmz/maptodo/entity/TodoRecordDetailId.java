@@ -22,6 +22,7 @@ public class TodoRecordDetailId implements Serializable {
     private Long recordId;
 
     @Column(name = "record_detail_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recordDetailId;
 
     @Override
@@ -38,4 +39,10 @@ public class TodoRecordDetailId implements Serializable {
         return Objects.hash(recordId, recordDetailId);
     }
 
+    public TodoRecordDetailId() {
+    }
+
+    public TodoRecordDetailId(Long recordId) {
+        this.recordId = recordId;
+    }
 }

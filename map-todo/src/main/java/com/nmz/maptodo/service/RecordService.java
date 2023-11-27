@@ -1,5 +1,7 @@
 package com.nmz.maptodo.service;
 
+import com.nmz.maptodo.dto.RecordDTO;
+import com.nmz.maptodo.dto.RecordDetailDTO;
 import com.nmz.maptodo.entity.TodoRecord;
 
 /**
@@ -9,6 +11,6 @@ import com.nmz.maptodo.entity.TodoRecord;
  */
 public interface RecordService {
 
-    void addRecord(TodoRecord todoRecord);
+    void addRecord(RecordDTO recordDTO);
 
 }

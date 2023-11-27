@@ -1,7 +1,8 @@
 package com.nmz.maptodo.mapper;
 
-import com.nmz.maptodo.dto.RecordDetailDTO;
-import com.nmz.maptodo.entity.TodoRecordDetail;
+import com.nmz.maptodo.dto.RecordDTO;
+import com.nmz.maptodo.entity.TodoRecord;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -9,14 +10,16 @@ import org.mapstruct.MappingConstants;
 /**
  * @Description:
  * @Author: 聂明智
- * @Date: 2023/11/25-14:36
+ * @Date: 2023/11/27-9:10
  */
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface RecordMapper {
 
-    @Mapping(source = "detailChecked", target = "checked")
-    @Mapping(source = "detailText", target = "text")
-    @Mapping(source = "detailIsDelete", target = "isDelete")
-    RecordDetailDTO toRecordDetail(TodoRecordDetail todoRecordDetail);
+    @Mapping(source = "locked", target = "recordLocked")
+    @Mapping(source = "title", target = "recordTitle")
+    @Mapping(source = "isDelete", target = "recordIsDelete")
+    @Mapping(target = "recordCreateTime", ignore = true)
+    @Mapping(target = "recordUpdateTime", ignore = true)
+    TodoRecord toRecord(RecordDTO recordDTO);
 
 }
