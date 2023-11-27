@@ -1,0 +1,11 @@
+/target/
+/.idea/
+/demo.iml
+**/mvnw
+**/mvnw.cmd
+**/.mvn
+**/target
+*.log
+
+/**/build
+/**/.gradle/**
