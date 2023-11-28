@@ -45,4 +45,9 @@ public class TodoRecordDetailId implements Serializable {
     public TodoRecordDetailId(Long recordId) {
         this.recordId = recordId;
     }
+
+    public TodoRecordDetailId(Long recordId, Long recordDetailId) {
+        this.recordId = recordId;
+        this.recordDetailId = recordDetailId;
+    }
 }

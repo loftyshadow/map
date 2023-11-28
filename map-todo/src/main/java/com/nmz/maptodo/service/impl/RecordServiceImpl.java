@@ -12,9 +12,14 @@ import com.nmz.maptodo.mapper.TodoRecordRepository;
 import com.nmz.maptodo.service.RecordService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static com.nmz.maptodo.constant.RedissonKeyConstant.TODO_RECORD_REDISSON_KEY;
 
 /**
  * @Description:
@@ -29,12 +34,14 @@ public class RecordServiceImpl implements RecordService {
     private final TodoRecordDetailRepository todoRecordDetailRepository;
     private final RecordMapper recordMapper;
     private final RecordDetailMapper recordDetailMapper;
+    private final RedissonClient redissonClient;
 
     @Override
     @Transactional
-    public void addRecord(RecordDTO recordDTO) {
+    public void addRecord(RecordDTO recordDTO, Long userId) {
         List<TodoRecordDetail> recordDetailList = recordDetailMapper.toRecordDetailList(recordDTO.recordDetail());
         TodoRecord todoRecord = recordMapper.toRecord(recordDTO);
+        todoRecord.setId(new TodoRecordId(userId, null));
         TodoRecord save = todoRecordRepository.save(todoRecord);
         recordDetailList.forEach(recordDetail ->
                 recordDetail.setId(new TodoRecordDetailId(save.getId().getRecordId())));
@@ -44,6 +51,21 @@ public class RecordServiceImpl implements RecordService {
     @Override
     @Transactional
     public void updateRecord(RecordDTO recordDTO, Long todoId) {
+        Long userId = recordDTO.userId();
+        String redissonKey = TODO_RECORD_REDISSON_KEY.formatted(userId, todoId);
+        RLock todoRecordLock = redissonClient.getLock(redissonKey);
+        todoRecordLock.lock();
+        try {
+            List<TodoRecordDetail> recordDetailList = recordDetailMapper.toRecordDetailList(recordDTO.recordDetail());
+            TodoRecord todoRecord = recordMapper.toRecord(recordDTO);
+            todoRecord.setId(new TodoRecordId(userId, todoId));
+            todoRecordRepository.save(todoRecord);
+            recordDetailList.forEach(recordDetail ->
+                    recordDetail.setId(new TodoRecordDetailId(todoId, recordDetail.getId().getRecordId())));
+            todoRecordDetailRepository.saveAll(recordDetailList);
+        } finally {
+            todoRecordLock.unlock();
+        }
 
     }
 }

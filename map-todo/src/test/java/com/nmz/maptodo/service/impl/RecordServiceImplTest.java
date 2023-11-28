@@ -33,10 +33,10 @@ class RecordServiceImplTest {
             RecordDetailDTO recordDetailDTO = new RecordDetailDTO("测试" + i, false, false);
             recordDetailDTOList.add(recordDetailDTO);
         }
-        RecordDTO recordDTO = new RecordDTO(null, "测试", false, false, recordDetailDTOList);
+        RecordDTO recordDTO = new RecordDTO(null, null, "测试", false, false, recordDetailDTOList);
 
         // when
-        recordService.addRecord(recordDTO);
+        recordService.addRecord(recordDTO, null);
 
 
     }

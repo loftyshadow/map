@@ -26,7 +26,7 @@ public class RecordController {
     @PostMapping("/add")
     public Result<String> addRecord(@RequestBody RecordDTO recordDTO) {
         Long userId = UserIdContext.getUserId();
-        recordService.addRecord(recordDTO);
+        recordService.addRecord(recordDTO, userId);
         return Result.success("添加成功");
     }
 

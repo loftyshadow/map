@@ -11,7 +11,7 @@ import com.nmz.maptodo.entity.TodoRecord;
  */
 public interface RecordService {
 
-    void addRecord(RecordDTO recordDTO);
+    void addRecord(RecordDTO recordDTO, Long userId);
 
-    void updateRecord(RecordDTO recordDTO, Long todoId);
+    void updateRecord(RecordDTO recordDTO, Long todoId) throws InterruptedException;
 }
