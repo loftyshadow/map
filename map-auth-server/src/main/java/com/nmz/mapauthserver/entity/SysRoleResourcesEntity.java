@@ -20,25 +20,25 @@ public class SysRoleResourcesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "resource_id", nullable = false)
-    private int resourceId;
+    private long resourceId;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "role_id", nullable = false)
-    private int roleId;
+    private long roleId;
 
-    public int getResourceId() {
+    public long getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(int resourceId) {
+    public void setResourceId(long resourceId) {
         this.resourceId = resourceId;
     }
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 
@@ -50,15 +50,13 @@ public class SysRoleResourcesEntity {
         SysRoleResourcesEntity that = (SysRoleResourcesEntity) o;
 
         if (resourceId != that.resourceId) return false;
-        if (roleId != that.roleId) return false;
-
-        return true;
+        return roleId == that.roleId;
     }
 
     @Override
     public int hashCode() {
-        int result = resourceId;
-        result = 31 * result + roleId;
+        int result = (int) (resourceId ^ (resourceId >>> 32));
+        result = 31 * result + (int) (roleId ^ (roleId >>> 32));
         return result;
     }
 }

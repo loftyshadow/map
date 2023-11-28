@@ -18,25 +18,25 @@ public class SysRoleMenuEntityPK implements Serializable {
     @Column(name = "menu_id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int menuId;
+    private long menuId;
     @Column(name = "role_id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int roleId;
+    private long roleId;
 
-    public int getMenuId() {
+    public long getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(int menuId) {
+    public void setMenuId(long menuId) {
         this.menuId = menuId;
     }
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 
@@ -48,15 +48,13 @@ public class SysRoleMenuEntityPK implements Serializable {
         SysRoleMenuEntityPK that = (SysRoleMenuEntityPK) o;
 
         if (menuId != that.menuId) return false;
-        if (roleId != that.roleId) return false;
-
-        return true;
+        return roleId == that.roleId;
     }
 
     @Override
     public int hashCode() {
-        int result = menuId;
-        result = 31 * result + roleId;
+        int result = (int) (menuId ^ (menuId >>> 32));
+        result = 31 * result + (int) (roleId ^ (roleId >>> 32));
         return result;
     }
 }

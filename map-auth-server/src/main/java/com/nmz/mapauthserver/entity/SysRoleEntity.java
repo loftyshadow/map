@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.Objects;
+
 /**
  * @Description:
  * @Author: 聂明智
@@ -19,16 +21,16 @@ public class SysRoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "role_id", nullable = false)
-    private int roleId;
+    private long roleId;
     @Basic
     @Column(name = "role_name", nullable = true, length = 255)
     private String roleName;
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 
@@ -48,14 +50,12 @@ public class SysRoleEntity {
         SysRoleEntity that = (SysRoleEntity) o;
 
         if (roleId != that.roleId) return false;
-        if (roleName != null ? !roleName.equals(that.roleName) : that.roleName != null) return false;
-
-        return true;
+        return Objects.equals(roleName, that.roleName);
     }
 
     @Override
     public int hashCode() {
-        int result = roleId;
+        int result = (int) (roleId ^ (roleId >>> 32));
         result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
         return result;
     }

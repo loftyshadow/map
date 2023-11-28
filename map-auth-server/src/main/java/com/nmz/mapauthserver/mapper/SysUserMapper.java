@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @Date: 2023/9/26-17:50
  */
 @Repository
-public interface SysUserMapper extends CrudRepository<SysUserEntity, Integer>, QuerydslPredicateExecutor<SysUserEntity> {
+public interface SysUserMapper extends CrudRepository<SysUserEntity, Long>, QuerydslPredicateExecutor<SysUserEntity> {
 
     SysUserEntity findByUserName(String userName);
 

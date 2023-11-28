@@ -18,26 +18,26 @@ public class SysUserRoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_id", nullable = false)
-    private int userId;
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+    private long userId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "role_id", nullable = false)
-    private int roleId;
+    private long roleId;
 
-    public int getRoleId() {
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 
@@ -49,15 +49,13 @@ public class SysUserRoleEntity {
         SysUserRoleEntity that = (SysUserRoleEntity) o;
 
         if (userId != that.userId) return false;
-        if (roleId != that.roleId) return false;
-
-        return true;
+        return roleId == that.roleId;
     }
 
     @Override
     public int hashCode() {
-        int result = userId;
-        result = 31 * result + roleId;
+        int result = (int) (userId ^ (userId >>> 32));
+        result = 31 * result + (int) (roleId ^ (roleId >>> 32));
         return result;
     }
 }

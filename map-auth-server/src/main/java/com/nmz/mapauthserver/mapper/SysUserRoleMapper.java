@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
  * @Author: 聂明智
  * @Date: 2023/9/28-20:25
  */
-public interface SysUserRoleMapper extends CrudRepository<SysUserRoleEntity, Integer>, QuerydslPredicateExecutor<SysUserRoleEntity> {
-    SysUserRoleEntity findByUserId(int userId);
+public interface SysUserRoleMapper extends CrudRepository<SysUserRoleEntity, Long>, QuerydslPredicateExecutor<SysUserRoleEntity> {
+    SysUserRoleEntity findByUserId(long userId);
 }

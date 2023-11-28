@@ -20,25 +20,25 @@ public class SysRoleMenuEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "menu_id", nullable = false)
-    private int menuId;
+    private long menuId;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "role_id", nullable = false)
-    private int roleId;
+    private long roleId;
 
-    public int getMenuId() {
+    public long getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(int menuId) {
+    public void setMenuId(long menuId) {
         this.menuId = menuId;
     }
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 
@@ -50,15 +50,13 @@ public class SysRoleMenuEntity {
         SysRoleMenuEntity that = (SysRoleMenuEntity) o;
 
         if (menuId != that.menuId) return false;
-        if (roleId != that.roleId) return false;
-
-        return true;
+        return roleId == that.roleId;
     }
 
     @Override
     public int hashCode() {
-        int result = menuId;
-        result = 31 * result + roleId;
+        int result = (int) (menuId ^ (menuId >>> 32));
+        result = 31 * result + (int) (roleId ^ (roleId >>> 32));
         return result;
     }
 }

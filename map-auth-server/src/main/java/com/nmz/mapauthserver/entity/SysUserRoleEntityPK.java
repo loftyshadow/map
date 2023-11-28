@@ -11,6 +11,6 @@ import java.io.Serializable;
  */
 @Data
 public class SysUserRoleEntityPK implements Serializable {
-    private int userId;
-    private int roleId;
+    private long userId;
+    private long roleId;
 }

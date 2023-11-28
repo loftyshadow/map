@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.Objects;
+
 /**
  * @Description:
  * @Author: 聂明智
@@ -19,7 +21,7 @@ public class SysResourceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "resource_id", nullable = false)
-    private int resourceId;
+    private long resourceId;
     @Basic
     @Column(name = "resource_name", nullable = true, length = 255)
     private String resourceName;
@@ -30,11 +32,11 @@ public class SysResourceEntity {
     @Column(name = "resource_method", nullable = true, length = 255)
     private String resourceMethod;
 
-    public int getResourceId() {
+    public long getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(int resourceId) {
+    public void setResourceId(long resourceId) {
         this.resourceId = resourceId;
     }
 
@@ -70,17 +72,14 @@ public class SysResourceEntity {
         SysResourceEntity that = (SysResourceEntity) o;
 
         if (resourceId != that.resourceId) return false;
-        if (resourceName != null ? !resourceName.equals(that.resourceName) : that.resourceName != null) return false;
-        if (resourceUrl != null ? !resourceUrl.equals(that.resourceUrl) : that.resourceUrl != null) return false;
-        if (resourceMethod != null ? !resourceMethod.equals(that.resourceMethod) : that.resourceMethod != null)
-            return false;
-
-        return true;
+        if (!Objects.equals(resourceName, that.resourceName)) return false;
+        if (!Objects.equals(resourceUrl, that.resourceUrl)) return false;
+        return Objects.equals(resourceMethod, that.resourceMethod);
     }
 
     @Override
     public int hashCode() {
-        int result = resourceId;
+        int result = (int) (resourceId ^ (resourceId >>> 32));
         result = 31 * result + (resourceName != null ? resourceName.hashCode() : 0);
         result = 31 * result + (resourceUrl != null ? resourceUrl.hashCode() : 0);
         result = 31 * result + (resourceMethod != null ? resourceMethod.hashCode() : 0);

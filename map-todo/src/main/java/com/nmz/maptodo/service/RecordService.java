@@ -13,4 +13,5 @@ public interface RecordService {
 
     void addRecord(RecordDTO recordDTO);
 
+    void updateRecord(RecordDTO recordDTO, Long todoId);
 }

@@ -18,25 +18,25 @@ public class SysRoleResourcesEntityPK implements Serializable {
     @Column(name = "role_id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int roleId;
+    private long roleId;
     @Column(name = "resource_id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int resourceId;
+    private long resourceId;
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 
-    public int getResourceId() {
+    public long getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(int resourceId) {
+    public void setResourceId(long resourceId) {
         this.resourceId = resourceId;
     }
 
@@ -48,15 +48,13 @@ public class SysRoleResourcesEntityPK implements Serializable {
         SysRoleResourcesEntityPK that = (SysRoleResourcesEntityPK) o;
 
         if (roleId != that.roleId) return false;
-        if (resourceId != that.resourceId) return false;
-
-        return true;
+        return resourceId == that.resourceId;
     }
 
     @Override
     public int hashCode() {
-        int result = resourceId;
-        result = 31 * result + roleId;
+        int result = (int) (roleId ^ (roleId >>> 32));
+        result = 31 * result + (int) (resourceId ^ (resourceId >>> 32));
         return result;
     }
 }

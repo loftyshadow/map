@@ -1,9 +1,11 @@
 package com.nmz.maptodo.controller;
 
+import com.nmz.mapcommon.context.UserIdContext;
 import com.nmz.mapcommon.result.Result;
 import com.nmz.maptodo.dto.RecordDTO;
 import com.nmz.maptodo.service.RecordService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +25,15 @@ public class RecordController {
 
     @PostMapping("/add")
     public Result<String> addRecord(@RequestBody RecordDTO recordDTO) {
+        Long userId = UserIdContext.getUserId();
         recordService.addRecord(recordDTO);
         return Result.success("添加成功");
+    }
+
+    @PostMapping("/{todoId}")
+    public Result<String> updateRecord(@RequestBody RecordDTO recordDTO, @PathVariable Long todoId) {
+        recordService.updateRecord(recordDTO, todoId);
+        return Result.success("删除成功");
     }
 
 }

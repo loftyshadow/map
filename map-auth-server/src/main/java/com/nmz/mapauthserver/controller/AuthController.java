@@ -37,13 +37,13 @@ public class AuthController {
 
     @GetMapping("/menu/list")
     public Result<List<RouteRecordRawVO>> getUserMenu(){
-        Integer userId = getUserIdBySecurity();
+        Long userId = getUserIdBySecurity();
         return authService.getUserMenu(userId);
     }
 
     @PostMapping("/logout")
     public Result<String> logout(){
-        Integer userId = getUserIdBySecurity();
+        Long userId = getUserIdBySecurity();
         return authService.logout(userId);
     }
 

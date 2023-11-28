@@ -4,6 +4,7 @@ import com.nmz.maptodo.dto.RecordDTO;
 import com.nmz.maptodo.entity.TodoRecord;
 import com.nmz.maptodo.entity.TodoRecordDetail;
 import com.nmz.maptodo.entity.TodoRecordDetailId;
+import com.nmz.maptodo.entity.TodoRecordId;
 import com.nmz.maptodo.mapper.RecordDetailMapper;
 import com.nmz.maptodo.mapper.RecordMapper;
 import com.nmz.maptodo.mapper.TodoRecordDetailRepository;
@@ -36,7 +37,13 @@ public class RecordServiceImpl implements RecordService {
         TodoRecord todoRecord = recordMapper.toRecord(recordDTO);
         TodoRecord save = todoRecordRepository.save(todoRecord);
         recordDetailList.forEach(recordDetail ->
-                recordDetail.setId(new TodoRecordDetailId(save.getId())));
+                recordDetail.setId(new TodoRecordDetailId(save.getId().getRecordId())));
         todoRecordDetailRepository.saveAll(recordDetailList);
+    }
+
+    @Override
+    @Transactional
+    public void updateRecord(RecordDTO recordDTO, Long todoId) {
+
     }
 }

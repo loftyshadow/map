@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
  * @Description:
@@ -21,7 +22,7 @@ public class SysUserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_id", nullable = false)
-    private int userId;
+    private Long userId;
     @Basic
     @Column(name = "user_name", nullable = true, length = 255)
     private String userName;
@@ -44,11 +45,11 @@ public class SysUserEntity {
     @Column(name = "update_time", nullable = true)
     private Timestamp updateTime;
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -115,21 +116,19 @@ public class SysUserEntity {
 
         SysUserEntity that = (SysUserEntity) o;
 
-        if (userId != that.userId) return false;
-        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (delFlag != null ? !delFlag.equals(that.delFlag) : that.delFlag != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
-        if (creatTime != null ? !creatTime.equals(that.creatTime) : that.creatTime != null) return false;
-        if (updateTime != null ? !updateTime.equals(that.updateTime) : that.updateTime != null) return false;
-
-        return true;
+        if (!Objects.equals(userId, that.userId)) return false;
+        if (!Objects.equals(userName, that.userName)) return false;
+        if (!Objects.equals(password, that.password)) return false;
+        if (!Objects.equals(delFlag, that.delFlag)) return false;
+        if (!Objects.equals(email, that.email)) return false;
+        if (!Objects.equals(phoneNumber, that.phoneNumber)) return false;
+        if (!Objects.equals(creatTime, that.creatTime)) return false;
+        return Objects.equals(updateTime, that.updateTime);
     }
 
     @Override
     public int hashCode() {
-        int result = userId;
+        int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (delFlag != null ? delFlag.hashCode() : 0);

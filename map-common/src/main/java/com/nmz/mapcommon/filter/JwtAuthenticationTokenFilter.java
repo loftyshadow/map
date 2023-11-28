@@ -1,12 +1,11 @@
-package com.nmz.mapauthserver.filter;
+package com.nmz.mapcommon.filter;
 
+import com.nmz.mapcommon.context.UserIdContext;
 import com.nmz.mapcommon.utils.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -28,9 +27,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         //解析token
         Long userId = JwtUtils.getUserId(token);
-        //存入SecurityContextHolder,principal设置为userId
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, null, null);
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        //存入UserIdContext
+        UserIdContext.setUserId(userId);
         //放行
         filterChain.doFilter(request, response);
     }

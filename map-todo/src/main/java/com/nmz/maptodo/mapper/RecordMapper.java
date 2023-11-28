@@ -15,6 +15,8 @@ import org.mapstruct.MappingConstants;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface RecordMapper {
 
+    @Mapping(source = "id", target = "id.recordId")
+    @Mapping(source = "userId", target = "id.userId")
     @Mapping(source = "locked", target = "recordLocked")
     @Mapping(source = "title", target = "recordTitle")
     @Mapping(source = "isDelete", target = "recordIsDelete")

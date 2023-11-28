@@ -1,8 +1,6 @@
 package com.nmz.maptodo.mapper;
 
-import com.nmz.maptodo.dto.RecordDTO;
 import com.nmz.maptodo.dto.RecordDetailDTO;
-import com.nmz.maptodo.entity.TodoRecord;
 import com.nmz.maptodo.entity.TodoRecordDetail;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +12,16 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @Date: 2023/11/25-20:45
  */
 @SpringBootTest
-class RecordMapperTest {
+class RecordDetailMapperTest {
 
     @Autowired
-    RecordMapper underTest;
+    RecordDetailMapper underTest;
 
     @Test
     void test() {
-        RecordDTO recordDTO = new RecordDTO(1L, "测试", false, false, null);
-        TodoRecord todoRecord = underTest.toRecord(recordDTO);
-        System.out.println(todoRecord);
+        RecordDetailDTO recordDetailDTO = new RecordDetailDTO("测试", false, false);
+        TodoRecordDetail todoRecordDetail = underTest.toRecordDetail(recordDetailDTO);
+        System.out.println(todoRecordDetail);
     }
 
 

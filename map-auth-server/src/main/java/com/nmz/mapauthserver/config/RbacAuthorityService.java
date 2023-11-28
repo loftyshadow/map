@@ -27,7 +27,7 @@ public class RbacAuthorityService {
 
     public boolean hasPermission(String permission) {
         logger.debug("进入RBAC动态鉴权判断");
-        Integer userId = SecurityUtil.getUserIdBySecurity();
+        Long userId = SecurityUtil.getUserIdBySecurity();
         QSysUserEntity sysUserEntity = QSysUserEntity.sysUserEntity;
         QSysUserRoleEntity sysUserRoleEntity = QSysUserRoleEntity.sysUserRoleEntity;
         QSysRoleResourcesEntity sysRoleResourcesEntity = QSysRoleResourcesEntity.sysRoleResourcesEntity;

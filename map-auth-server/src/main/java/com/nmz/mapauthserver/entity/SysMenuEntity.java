@@ -23,10 +23,10 @@ public class SysMenuEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "menu_id", nullable = false)
-    private int menuId;
+    private long menuId;
     @Basic
     @Column(name = "parent_id", nullable = false)
-    private int parentId;
+    private long parentId;
     @Basic
     @Column(name = "component", nullable = true, length = 255)
     private String component;

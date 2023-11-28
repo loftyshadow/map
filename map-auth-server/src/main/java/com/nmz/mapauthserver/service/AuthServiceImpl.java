@@ -6,9 +6,9 @@ import com.nmz.mapauthserver.entity.SysUserEntity;
 import com.nmz.mapauthserver.mapper.SysMenuMapper;
 import com.nmz.mapauthserver.mapper.SysUserRoleMapper;
 import com.nmz.mapcommon.result.Result;
-import com.nmz.mapauthserver.utils.JwtUtils;
 import com.nmz.mapauthserver.vo.LoginVO;
 import com.nmz.mapauthserver.vo.RouteRecordRawVO;
+import com.nmz.mapcommon.utils.JwtUtils;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -77,10 +77,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Result<List<RouteRecordRawVO>> getUserMenu(Integer userId) {
-        int roleId = sysUserRoleMapper.findByUserId(userId).getRoleId();
-        List<Integer> menuIds = queryFactory.select(sysRoleMenuEntity.menuId).from(sysRoleMenuEntity).where(sysRoleMenuEntity.roleId.eq(roleId)).fetch();
-        Predicate p = sysMenuEntity.menuId.in(menuIds).and(sysMenuEntity.parentId.eq(0));
+    public Result<List<RouteRecordRawVO>> getUserMenu(Long userId) {
+        long roleId = sysUserRoleMapper.findByUserId(userId).getRoleId();
+        List<Long> menuIds = queryFactory.select(sysRoleMenuEntity.menuId).from(sysRoleMenuEntity).where(sysRoleMenuEntity.roleId.eq(roleId)).fetch();
+        Predicate p = sysMenuEntity.menuId.in(menuIds).and(sysMenuEntity.parentId.eq(0L));
         List<SysMenuEntity> menus = queryFactory
                 .select(sysMenuEntity)
                 .from(sysMenuEntity)
@@ -100,7 +100,7 @@ public class AuthServiceImpl implements AuthService {
      *         及子菜单递归的所有子菜单
      */
     private RouteRecordRawVO getChildrenMenu(SysMenuEntity menu) {
-        int parentId = menu.getMenuId();
+        long parentId = menu.getMenuId();
         RouteRecordRawVO voMenu = RouteRecordRawVO.toRouteRecordRawVO(menu);
         List<SysMenuEntity> childMenuId = sysMenuMapper.findByParentId(parentId);
         if (childMenuId.isEmpty()) {
@@ -116,7 +116,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Result<String> logout(Integer userId) {
+    public Result<String> logout(Long userId) {
         valueOperations.getAndDelete(REDIS_LOGIN_KEY + userId);
         return Result.success("登出成功");
     }

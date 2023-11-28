@@ -16,7 +16,7 @@ public interface AuthService {
 
     Result<LoginVO> login(SysUserEntity user);
 
-    Result<List<RouteRecordRawVO>> getUserMenu(Integer userId);
+    Result<List<RouteRecordRawVO>> getUserMenu(Long userId);
 
-    Result<String> logout(Integer userId);
+    Result<String> logout(Long userId);
 }

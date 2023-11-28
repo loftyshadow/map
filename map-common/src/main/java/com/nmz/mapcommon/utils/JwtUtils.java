@@ -1,4 +1,4 @@
-package com.nmz.mapauthserver.utils;
+package com.nmz.mapcommon.utils;
 
 
 import com.auth0.jwt.JWT;
@@ -53,13 +53,13 @@ public class JwtUtils {
     }
 
     //从token字符串获取userid
-    public static Integer getUserId(String token) {
+    public static Long getUserId(String token) {
         try {
             if (!StringUtils.hasLength(token))
                 return null;
             return JWT.decode(token)
                     .getClaim("userId")
-                    .asInt();
+                    .asLong();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
