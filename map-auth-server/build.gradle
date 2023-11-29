@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
     implementation project(':map-common')
+    implementation group: 'org.apache.dubbo', name: 'dubbo-spring-boot-starter', version: '3.3.0-beta.1'
     implementation group: 'com.auth0', name: 'java-jwt', version: '4.4.0'
     implementation group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: '2022.0.0.0'
     implementation 'org.springframework.boot:spring-boot-starter'

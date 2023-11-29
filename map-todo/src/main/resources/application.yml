@@ -8,6 +8,7 @@ spring:
   config:
     import:
       - classpath:config/jpa.yml
+      - classpath:config/dubbo.yml
   cloud:
     # nacos服务地址
     nacos:

@@ -1,8 +1,4 @@
 spring:
-  sql:
-    init:
-      data-locations: classpath:config/init.sql
-  #      mode: always
   datasource:
     url: jdbc:p6spy:mysql://192.168.1.14:3306/map?useUnicode=true&characterEncoding=utf8
     username: root

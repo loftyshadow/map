@@ -13,5 +13,5 @@ public interface RecordService {
 
     void addRecord(RecordDTO recordDTO, Long userId);
 
-    void updateRecord(RecordDTO recordDTO, Long todoId) throws InterruptedException;
+    void updateRecord(RecordDTO recordDTO, Long todoId);
 }

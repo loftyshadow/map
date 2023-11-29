@@ -4,6 +4,8 @@ spring:
   application:
     name: map-gateway
   cloud:
+    compatibility-verifier:
+      enabled: false
     # nacos服务地址
     nacos:
       discovery:
@@ -26,17 +28,11 @@ spring:
         locator:
           enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
       routes:
-        #Query A 参数有A就行，Query B,C 参数B的值为C即可
-        #实现针对于“http://localhost:88/zsy0216?url=baidu”，转发到“https://www.github.com/zsy0216”，
-        #- id: github_route
-        #  uri: https://www.github.com
-        #  predicates:
-        #    - Query=url,github
         - id: auth_route
           uri: lb://map-auth-server
           predicates:
             - Path=/auth/**
-
-      ## http://localhost:88/api/captcha.jpg   http://localhost:8080/renren-fast/captcha.jpg
-      ## http://localhost:88/api/product/category/list/tree http://localhost:10000/product/category/list/tree
-
+        - id: todo_route
+          uri: lb://map-todo
+          predicates:
+            - Path=/todo/**

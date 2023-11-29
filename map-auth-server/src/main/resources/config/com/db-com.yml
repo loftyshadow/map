@@ -1,8 +1,4 @@
 spring:
-  sql:
-    init:
-      data-locations: classpath:config/init.sql
-  #      mode: always
   datasource:
     #    &allowMultiQueries=true 批量执行sql（mybatis中一个方法对应xml可以写多个sql语句）
     #    &rewriteBatchedStatements=true 执行batch插入
