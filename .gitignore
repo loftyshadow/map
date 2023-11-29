@@ -1,6 +1,6 @@
 /target/
 /.idea/
-/demo.iml
+/**/*.iml
 **/mvnw
 **/mvnw.cmd
 **/.mvn
