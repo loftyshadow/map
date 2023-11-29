@@ -3,3 +3,5 @@ spring:
     import:
       - classpath:config/db.yml
       - classpath:config/redis.yml
+      - classpath:config/rabbitmq.yml
+      - classpath:config/dubbo.yml

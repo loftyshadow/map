@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    #家里虚拟机
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    #none 禁用发布确认模式，默认值， correlated发布消息成功后会触发回调方法 simple 有点复杂
+    publisher-confirm-type: correlated
+    #发布退回
+    publisher-returns: true
