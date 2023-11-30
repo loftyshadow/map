@@ -1,0 +1,7 @@
+server:
+  port: 8081
+spring:
+  config:
+    import:
+      - classpath:config/com/db-com.yml
+      - classpath:config/com/redis-com.yml
