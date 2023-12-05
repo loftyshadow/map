@@ -10,6 +10,7 @@ spring:
       - classpath:config/jpa.yml
       - classpath:config/rabbitmq.yml
       - classpath:config/dubbo.yml
+      - classpath:config/elasticsearch.yml
   cloud:
     # nacos服务地址
     nacos:

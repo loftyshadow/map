@@ -6,7 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.util.Date;
 
 /**
  * @Description: 评论
@@ -24,6 +28,14 @@ public class Review {
     @Column(name = "review_content")
     private String reviewContent;
 
+    @CreatedDate
+    @Column(name = "review_create_time", updatable = false)
+    private Date reviewCreateTime;
+
+    @LastModifiedDate
+    @Column(name = "review_update_time")
+    private Date reviewUpdateTime;
+
     public String getReviewContent() {
         return reviewContent;
     }
@@ -38,5 +50,21 @@ public class Review {
 
     public void setReviewId(ReviewId reviewId) {
         this.reviewId = reviewId;
+    }
+
+    public Date getReviewCreateTime() {
+        return reviewCreateTime;
+    }
+
+    public void setReviewCreateTime(Date reviewCreateTime) {
+        this.reviewCreateTime = reviewCreateTime;
+    }
+
+    public Date getReviewUpdateTime() {
+        return reviewUpdateTime;
+    }
+
+    public void setReviewUpdateTime(Date reviewUpdateTime) {
+        this.reviewUpdateTime = reviewUpdateTime;
     }
 }
