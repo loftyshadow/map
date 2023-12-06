@@ -1,7 +1,6 @@
 spring:
   rabbitmq:
-    #家里虚拟机
-    host: localhost
+    host: 192.168.1.14
     port: 5672
     username: guest
     password: guest
@@ -9,3 +8,10 @@ spring:
     publisher-confirm-type: correlated
     #发布退回
     publisher-returns: true
+    connection-timeout: 1s #连接超时时间
+    template:
+      retry:
+        enabled: true #开启重试机制
+        max-attempts: 3 #最大重试次数
+        initial-interval: 1000ms #重试间隔
+        multiplier: 1.0 # 失败后的重试间隔倍数下次等待时间 = initial-interval * multiplier
