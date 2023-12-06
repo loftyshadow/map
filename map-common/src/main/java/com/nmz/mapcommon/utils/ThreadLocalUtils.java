@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class ThreadLocalUtil {
+public class ThreadLocalUtils {
 
-    private ThreadLocalUtil() {
+    private ThreadLocalUtils() {
     }
 
     private static final ThreadLocal<Map<Object, Object>> MAP_THREAD_LOCAL = ThreadLocal.withInitial(HashMap::new);

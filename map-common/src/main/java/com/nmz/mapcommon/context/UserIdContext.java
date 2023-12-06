@@ -1,6 +1,6 @@
 package com.nmz.mapcommon.context;
 
-import com.nmz.mapcommon.utils.ThreadLocalUtil;
+import com.nmz.mapcommon.utils.ThreadLocalUtils;
 
 /**
  * @Description:
@@ -12,15 +12,15 @@ public class UserIdContext {
     private static final String USER_ID = "userId";
 
     public static Long getUserId() {
-        return ThreadLocalUtil.get(USER_ID);
+        return ThreadLocalUtils.get(USER_ID);
     }
 
     public static void setUserId(Long userId) {
-        ThreadLocalUtil.set(USER_ID, userId);
+        ThreadLocalUtils.set(USER_ID, userId);
     }
 
     public static void remove(){
-        ThreadLocalUtil.removeKey(USER_ID);
+        ThreadLocalUtils.removeKey(USER_ID);
     }
 
 }
