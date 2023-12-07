@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8084
 spring:
   application:
     name: map-auth-server
@@ -8,9 +8,6 @@ spring:
   config:
     import:
       - classpath:config/jpa.yml
-      - classpath:config/rabbitmq.yml
-      - classpath:config/dubbo.yml
-      - classpath:config/elasticsearch.yml
   cloud:
     # nacos服务地址
     nacos:

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/visitedCity")
+@RequestMapping("/trip")
 public class VisitedCityController {
 
     private final VisitedCityService visitedCityService;

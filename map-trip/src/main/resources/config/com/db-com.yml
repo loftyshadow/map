@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    #    &allowMultiQueries=true 批量执行sql（mybatis中一个方法对应xml可以写多个sql语句）
+    #    &rewriteBatchedStatements=true 执行batch插入
+    #    2.0升级之后需要变更成：spring.datasource.jdbc-url和spring.datasource.driver-class-name即可解决！
+    url: jdbc:p6spy:mysql://192.168.1.122:3306/map?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 1234
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver

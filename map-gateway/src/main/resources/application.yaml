@@ -36,3 +36,11 @@ spring:
           uri: lb://map-todo
           predicates:
             - Path=/todo/**
+        - id: review_route
+          uri: lb://map-review
+          predicates:
+            - Path=/review/**
+        - id: trip_route
+          uri: lb://map-trip
+          predicates:
+            - Path=/trip/**
