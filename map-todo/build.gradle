@@ -31,7 +31,7 @@ dependencies {
     implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.0.0', classifier: 'jakarta'
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '3.2.0'
-    implementation group: 'org.redisson', name: 'redisson', version: '3.24.3'
+    implementation group: 'org.redisson', name: 'redisson-spring-boot-starter', version: '3.25.0'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '3.2.0'
 
     runtimeOnly 'com.mysql:mysql-connector-j'
