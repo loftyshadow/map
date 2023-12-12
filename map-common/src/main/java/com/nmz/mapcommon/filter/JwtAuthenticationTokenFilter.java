@@ -28,9 +28,14 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         //解析token
         Long userId = JwtUtils.getUserId(token);
         //存入UserIdContext
-        UserIdContext.setUserId(userId);
-        //放行
-        filterChain.doFilter(request, response);
+        try {
+            UserIdContext.setUserId(userId);
+            //放行
+            filterChain.doFilter(request, response);
+        } finally {
+            UserIdContext.remove();
+        }
+
     }
 
 }
