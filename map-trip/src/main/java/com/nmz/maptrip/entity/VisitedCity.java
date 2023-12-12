@@ -1,5 +1,6 @@
 package com.nmz.maptrip.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -14,10 +15,12 @@ import java.util.Date;
  * @Date: 2023/12/6-17:42
  */
 @Entity
+@Schema(title = "旅游过的城市", description = "旅游过的城市")
 public class VisitedCity {
     @EmbeddedId
     private VisitedCityId visitedCityId;
 
+    @Schema(name = "城市名称", description = "城市名称", example = "北京")
     @Column(name = "visited_city_name")
     private String visitedCityName;
 

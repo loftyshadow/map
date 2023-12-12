@@ -1,6 +1,7 @@
 package com.nmz.mapauthserver.vo;
 
 import com.nmz.mapauthserver.entity.SysMenuEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(title = "路由参数")
 public class RouteRecordRawVO {
     /** 路由访问路径 */
+    @Schema(name = "path", description = "路由访问路径", example = "/home")
     private String path;
     /** 路由 name (对应页面组件 name, 可用作 KeepAlive 缓存标识 && 按钮权限筛选) */
     private String name;

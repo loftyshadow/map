@@ -1,5 +1,6 @@
 package com.nmz.mapauthserver.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,18 +17,27 @@ import java.util.Objects;
  * @Date: 2023/9/26-17:45
  */
 @Entity
+@Schema(title = "权限")
 @Table(name = "sys_resource", schema = "map", catalog = "")
 public class SysResourceEntity {
+
+    @Schema(name = "资源ID", description = "资源ID属性", format = "int64", example = "1")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "resource_id", nullable = false)
     private long resourceId;
+
+    @Schema(name = "资源名称", description = "资源名称属性", format = "string", example = "用户管理")
     @Basic
     @Column(name = "resource_name", nullable = true, length = 255)
     private String resourceName;
+
+    @Schema(name = "资源URL", description = "资源URL属性", format = "string", example = "/user")
     @Basic
     @Column(name = "resource_url", nullable = true, length = 255)
     private String resourceUrl;
+
+    @Schema(name = "资源方法", description = "资源方法属性", format = "string", example = "GET")
     @Basic
     @Column(name = "resource_method", nullable = true, length = 255)
     private String resourceMethod;

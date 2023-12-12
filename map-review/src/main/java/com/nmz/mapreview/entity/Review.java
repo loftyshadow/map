@@ -1,5 +1,6 @@
 package com.nmz.mapreview.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -19,11 +20,13 @@ import java.util.Date;
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "todo_review", schema = "map")
+@Schema(title = "评论", description = "用户评论")
+@Table(name = "mapo_review", schema = "map")
 public class Review {
     @EmbeddedId
     private ReviewId reviewId;
 
+    @Schema(name = "评论内容", description = "用户评论内容", format = "text", example = "wonderful")
     @Lob
     @Column(name = "review_content")
     private String reviewContent;

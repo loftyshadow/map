@@ -1,5 +1,6 @@
 package com.nmz.mapauthserver.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,12 +17,17 @@ import java.util.Objects;
  * @Date: 2023/9/26-17:45
  */
 @Entity
+@Schema(name = "用户角色表")
 @Table(name = "sys_role", schema = "map", catalog = "")
 public class SysRoleEntity {
+
+    @Schema(name = "角色ID", description = "角色ID属性", format = "int64", example = "1")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "role_id", nullable = false)
     private long roleId;
+
+    @Schema(name = "角色名称", description = "角色名称属性", format = "string", example = "管理员")
     @Basic
     @Column(name = "role_name", nullable = true, length = 255)
     private String roleName;

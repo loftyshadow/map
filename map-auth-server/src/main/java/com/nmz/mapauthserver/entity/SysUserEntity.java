@@ -1,5 +1,6 @@
 package com.nmz.mapauthserver.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,30 +18,46 @@ import java.util.Objects;
  * @Date: 2023/9/27-21:14
  */
 @Entity
+@Schema(title = "用户信息表")
 @Table(name = "sys_user", schema = "map", catalog = "")
 public class SysUserEntity {
+    @Schema(name = "用户ID", description = "用户ID属性", format = "int64", example = "1")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_id", nullable = false)
     private Long userId;
+
+    @Schema(name = "用户名", description = "用户名属性", format = "string", example = "admin")
     @Basic
     @Column(name = "user_name", nullable = true, length = 255)
     private String userName;
+
+    @Schema(name = "密码", description = "密码属性", format = "string", example = "admin")
     @Basic
     @Column(name = "password", nullable = true, length = 255)
     private String password;
+
+    @Schema(name = "删除标识", description = "删除标识属性", format = "int32", example = "0")
     @Basic
     @Column(name = "del_flag", nullable = true)
     private Boolean delFlag;
+
+    @Schema(name = "邮箱", description = "邮箱属性", format = "string", example = "example@qq.com")
     @Basic
     @Column(name = "email", nullable = true, length = 255)
     private String email;
+
+    @Schema(name = "手机号", description = "手机号属性", format = "int32", example = "1234567890")
     @Basic
     @Column(name = "phone_number", nullable = true)
     private Integer phoneNumber;
+
+    @Schema(name = "创建时间", description = "创建时间属性", format = "string", example = "2023-09-27 21:14:14")
     @Basic
     @Column(name = "creat_time", nullable = true)
     private Timestamp creatTime;
+
+    @Schema(name = "更新时间", description = "更新时间属性", format = "string", example = "2023-09-27")
     @Basic
     @Column(name = "update_time", nullable = true)
     private Timestamp updateTime;

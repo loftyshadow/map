@@ -5,6 +5,7 @@ import com.nmz.mapcommon.context.UserIdContext;
 import com.nmz.mapcommon.result.Result;
 import com.nmz.maptodo.dto.RecordDTO;
 import com.nmz.maptodo.service.RecordService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -20,10 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author: 聂明智
  * @Date: 2023/11/24-17:48
  */
+@Slf4j
 @RestController
 @RequestMapping("/todo")
+@Tag(name = "RecordController", description = "待办事项RecordController")
 @RequiredArgsConstructor
-@Slf4j
 public class RecordController {
 
     private final RecordService recordService;

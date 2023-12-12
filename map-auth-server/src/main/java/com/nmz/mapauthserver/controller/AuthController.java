@@ -5,6 +5,8 @@ import com.nmz.mapauthserver.service.AuthService;
 import com.nmz.mapauthserver.vo.LoginVO;
 import com.nmz.mapauthserver.vo.RouteRecordRawVO;
 import com.nmz.mapcommon.result.Result;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +26,7 @@ import static com.nmz.mapauthserver.utils.SecurityUtil.getUserIdBySecurity;
  */
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "AuthController", description = "用户认证AuthController")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -31,6 +34,7 @@ public class AuthController {
 
 
     @PostMapping("/login")
+    @Operation(summary = "账号密码" , description = "通过账号登录")
     public Result<LoginVO> login(@RequestBody SysUserEntity user){
         return authService.login(user);
     }
