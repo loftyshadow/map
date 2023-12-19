@@ -1,6 +1,6 @@
 package com.nmz.maptrip.service;
 
-import com.nmz.maptrip.entity.VisitedCity;
+import com.nmz.maptrip.entity.VisitedCityEntity;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import java.util.List;
  */
 public interface VisitedCityService {
 
-    void addVisitedCity(VisitedCity visitedCity);
+    void addVisitedCity(VisitedCityEntity visitedCity);
 
-    List<VisitedCity> getVisitedCityList(Long userId);
+    List<VisitedCityEntity> getVisitedCityList(Long userId);
 
 }

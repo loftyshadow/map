@@ -6,12 +6,12 @@ package com.nmz.mapcommon.enums;
  * @Date: 2023/11/22-14:16
  */
 public enum SexEnum {
-    /**
-     * 男
-     */
-    MAN,
-    /**
-     * 女
-     */
-    WOMAN
+    MAN("男"),
+    WOMAN("女");
+
+    private final String sex;
+
+    SexEnum(String sex) {
+        this.sex = sex;
+    }
 }

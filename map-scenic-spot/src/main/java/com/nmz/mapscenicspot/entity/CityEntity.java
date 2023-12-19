@@ -1,4 +1,4 @@
-package com.nmz.maptrip.entity;
+package com.nmz.mapscenicspot.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
  */
 @Entity
 @Schema(title = "所有的城市", description = "可获取的全部城市，根据父城市id实现层级效果")
-public class City {
+public class CityEntity {
     @Id
     @Column(name = "city_id", nullable = false)
     private Long cityId;

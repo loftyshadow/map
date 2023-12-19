@@ -1,10 +1,8 @@
-package com.nmz.maptrip.service.impl;
+package com.nmz.mapscenicspot.service.impl;
 
-import com.nmz.maptrip.entity.City;
-import com.nmz.maptrip.entity.QCity;
-import com.nmz.maptrip.mapper.CityRepository;
-import com.nmz.maptrip.service.CityService;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.nmz.mapscenicspot.entity.CityEntity;
+import com.nmz.mapscenicspot.mapper.CityRepository;
+import com.nmz.mapscenicspot.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +20,12 @@ public class CityServiceImpl implements CityService {
     private final CityRepository cityRepository;
 
     @Override
-    public List<City> getCityList() {
+    public List<CityEntity> getCityList() {
         return cityRepository.findByParentCityId(0L);
     }
 
     @Override
-    public List<City> getChildrenCityList(Long parentCityId) {
+    public List<CityEntity> getChildrenCityList(Long parentCityId) {
         return cityRepository.findByParentCityId(parentCityId);
     }
 }

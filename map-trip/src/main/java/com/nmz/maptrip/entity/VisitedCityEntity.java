@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @Entity
 @Schema(title = "旅游过的城市", description = "旅游过的城市")
-public class VisitedCity {
+public class VisitedCityEntity {
     @EmbeddedId
     private VisitedCityId visitedCityId;
 
