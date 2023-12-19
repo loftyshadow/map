@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class RecordServiceImplTest {
 
-    @Autowired
+    @Autowired(required = false)
     RecordService recordService;
 
     @Test

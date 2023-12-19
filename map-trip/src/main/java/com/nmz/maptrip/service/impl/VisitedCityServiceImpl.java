@@ -6,6 +6,8 @@ import com.nmz.maptrip.service.VisitedCityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Description:
  * @Author: 聂明智
@@ -20,5 +22,10 @@ public class VisitedCityServiceImpl implements VisitedCityService {
     @Override
     public void addVisitedCity(VisitedCity visitedCity) {
         visitedCityRepository.save(visitedCity);
+    }
+
+    @Override
+    public List<VisitedCity> getVisitedCityList(Long userId) {
+        return visitedCityRepository.findVisitedCityByUserId(userId);
     }
 }

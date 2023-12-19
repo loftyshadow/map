@@ -9,9 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @SpringBootTest
 class MapTodoApplicationTests {
 
@@ -37,7 +34,7 @@ class MapTodoApplicationTests {
     @Test
     void getDetailById() {
         log.debug("todoRecordDetailRepository.findByIdRecordId(1L)为: {}",
-                todoRecordDetailRepository.findByRecordId(1L));
+                todoRecordDetailRepository.getToDoRecordDetailByRecordId(1L));
     }
 
 

@@ -16,12 +16,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class RecordMapperTest {
 
-    @Autowired
+    @Autowired(required = false)
     RecordMapper underTest;
 
     @Test
     void test() {
-        RecordDTO recordDTO = new RecordDTO(1L, "测试", false, false, null);
+        RecordDTO recordDTO = new RecordDTO(1L, 1L, "测试", false, false, null);
         TodoRecord todoRecord = underTest.toRecord(recordDTO);
         System.out.println(todoRecord);
     }

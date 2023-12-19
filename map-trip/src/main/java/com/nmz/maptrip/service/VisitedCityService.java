@@ -2,6 +2,8 @@ package com.nmz.maptrip.service;
 
 import com.nmz.maptrip.entity.VisitedCity;
 
+import java.util.List;
+
 /**
  * @Description:
  * @Author: 聂明智
@@ -10,5 +12,7 @@ import com.nmz.maptrip.entity.VisitedCity;
 public interface VisitedCityService {
 
     void addVisitedCity(VisitedCity visitedCity);
+
+    List<VisitedCity> getVisitedCityList(Long userId);
 
 }

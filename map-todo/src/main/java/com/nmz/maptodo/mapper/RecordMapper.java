@@ -2,7 +2,6 @@ package com.nmz.maptodo.mapper;
 
 import com.nmz.maptodo.dto.RecordDTO;
 import com.nmz.maptodo.entity.TodoRecord;
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
