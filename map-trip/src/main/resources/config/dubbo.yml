@@ -1,6 +1,6 @@
 dubbo: # dubbo配置
   application:
-    name: map-auth-server # dubbo服务名称
+    name: map-trip # dubbo服务名称
   #Dubbo服务暴露的协议配置，其中子属性name为协议名称，port为协议端口（-1 表示自增端口，从 20880 开始）
   protocol:
     port: -1

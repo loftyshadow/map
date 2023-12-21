@@ -3,8 +3,8 @@ package com.nmz.mapauthserver.service.impl;
 import com.nmz.mapauthserver.entity.LoginUser;
 import com.nmz.mapauthserver.entity.SysMenuEntity;
 import com.nmz.mapauthserver.entity.SysUserEntity;
-import com.nmz.mapauthserver.mapper.SysMenuMapper;
-import com.nmz.mapauthserver.mapper.SysUserRoleMapper;
+import com.nmz.mapauthserver.mapper.SysMenuRepository;
+import com.nmz.mapauthserver.mapper.SysUserRoleRepository;
 import com.nmz.mapauthserver.service.AuthService;
 import com.nmz.mapcommon.result.Result;
 import com.nmz.mapauthserver.vo.LoginVO;
@@ -40,8 +40,8 @@ public class AuthServiceImpl implements AuthService {
 
     private final ValueOperations<String, Object> valueOperations;
     private final AuthenticationConfiguration authenticationConfiguration;
-    private final SysMenuMapper sysMenuMapper;
-    private final SysUserRoleMapper sysUserRoleMapper;
+    private final SysMenuRepository sysMenuMapper;
+    private final SysUserRoleRepository sysUserRoleMapper;
     private final JPAQueryFactory queryFactory;
     private static final String REDIS_LOGIN_KEY = "login";
 

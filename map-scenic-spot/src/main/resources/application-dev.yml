@@ -1,0 +1,5 @@
+spring:
+  config:
+    import:
+      - classpath:config/db.yml
+      - classpath:config/redis.yml

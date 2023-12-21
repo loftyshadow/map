@@ -11,10 +11,11 @@ import java.io.Serializable;
 @Setter
 @Embeddable
 public class ScenicSpotId implements Serializable {
-    @Column(name = "scenic_spot_id", nullable = false, unique = true)
-    private Long scenicSpotId;
 
     @Column(name = "city_id", nullable = false, unique = true)
     private Long cityId;
+
+    @Column(name = "scenic_spot_id", nullable = false, unique = true)
+    private Long scenicSpotId;
 
 }

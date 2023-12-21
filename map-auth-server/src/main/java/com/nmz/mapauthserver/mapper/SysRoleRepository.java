@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @Date: 2023/9/28-20:23
  */
 @Repository
-public interface SysRoleMenuMapper extends CrudRepository<SysRoleMenuEntity, Long>, QuerydslPredicateExecutor<SysRoleMenuEntity> {
+public interface SysRoleRepository extends CrudRepository<SysRoleMenuEntity, Long>, QuerydslPredicateExecutor<SysRoleMenuEntity> {
 }

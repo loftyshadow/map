@@ -12,5 +12,10 @@ import java.util.List;
  * @Author: 聂明智
  * @Date: 2023/11/24-18:25
  */
-public record RecordDTO (Long userId, Long id, String title, Boolean isDelete, Boolean locked, List<RecordDetailDTO> recordDetail){
+public record RecordDTO (Long userId,
+                         Long id,
+                         String title,
+                         Boolean isDelete,
+                         Boolean locked,
+                         List<RecordDetailDTO> recordDetail){
 }

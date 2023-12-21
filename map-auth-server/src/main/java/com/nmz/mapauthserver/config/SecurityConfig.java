@@ -3,7 +3,7 @@ package com.nmz.mapauthserver.config;
 import com.nmz.mapauthserver.entity.LoginUser;
 import com.nmz.mapauthserver.entity.SysUserEntity;
 import com.nmz.mapauthserver.filter.JwtAuthenticationTokenFilter;
-import com.nmz.mapauthserver.mapper.SysUserMapper;
+import com.nmz.mapauthserver.mapper.SysUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     private final JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
-    private final SysUserMapper sysUserMapper;
+    private final SysUserRepository sysUserMapper;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

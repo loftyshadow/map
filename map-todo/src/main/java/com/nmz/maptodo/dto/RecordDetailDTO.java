@@ -5,5 +5,7 @@ package com.nmz.maptodo.dto;
  * @Author: 聂明智
  * @Date: 2023/11/24-18:36
  */
-public record RecordDetailDTO(String text, Boolean isDelete, Boolean checked) {
+public record RecordDetailDTO(String text,
+                              Boolean isDelete,
+                              Boolean checked) {
 }

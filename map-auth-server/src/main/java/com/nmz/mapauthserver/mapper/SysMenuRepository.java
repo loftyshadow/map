@@ -13,7 +13,7 @@ import java.util.List;
  * @Date: 2023/9/28-20:22
  */
 @Repository
-public interface SysMenuMapper extends CrudRepository<SysMenuEntity, Long>, QuerydslPredicateExecutor<SysMenuEntity> {
+public interface SysMenuRepository extends CrudRepository<SysMenuEntity, Long>, QuerydslPredicateExecutor<SysMenuEntity> {
 
 
     List<SysMenuEntity> findByParentId(Long parentId);

@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  * @Description: 所有的城市
@@ -11,6 +12,7 @@ import jakarta.persistence.Id;
  * @Date: 2023/12/17-0:10
  */
 @Entity
+@Table(name = "city", schema = "map", catalog = "")
 @Schema(title = "所有的城市", description = "可获取的全部城市，根据父城市id实现层级效果")
 public class CityEntity {
     @Id
