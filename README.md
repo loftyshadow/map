@@ -4,6 +4,19 @@
 动态权限系统、Nacos 做注册中心 ，Dubbo 作物服务间通信组件，GateWay 做网关采用 JPA + QueryDSL 操作 Mysql 数据库，后台运用
 Redis 做缓存，Redisson 进行数据锁，ElasticSearch 作为搜索引擎，Swagger 3做 Api 文档工具
 
+### 目录结果规范
+![目录结果规范](doc/目录结果规范.png)
+- VO（View Object）：显示层对象，通常是 Web 向模板渲染引擎层传输的对象。
+- DTO（Data Transfer Object）：数据传输对象，前端像后台进行传输的对象，类似于param。
+- BO（Business Object）：业务对象，内部业务对象，只在内部传递，不对外进行传递。
+- Entity：模型层，此对象与数据库表结构一一对应。
+- Controller：主要是对内部访问控制进行转发，各类基本参数校验，或者不复用的业务简单处理等。为了简单起见，一些与事务无关的代码也在这里编写。
+- Service 层：相对具体的业务逻辑服务层。
+- Mapper转换层：通过MapStruct将 DTO 转换成 VO，或者将 VO 转换成 DTO。
+- Repository：数据访问层，与数据库交互，通过 JPA 实现对数据库的 CURD 操作。
+- Listener：监听 RabbitMQ 并进行处理相关数据。
+
+### 目录结构
 ```text
 map
 ├─map-auth-server -- 授权服务
