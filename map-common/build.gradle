@@ -8,7 +8,7 @@ group = 'com.nmz'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+    sourceCompatibility = '21'
 }
 
 java {
@@ -22,8 +22,10 @@ repositories {
 dependencies {
     implementation group: 'com.auth0', name: 'java-jwt', version: '4.4.0'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.projectlombok:lombok:1.18.28'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '3.2.0'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
 
     annotationProcessor 'org.projectlombok:lombok'
 

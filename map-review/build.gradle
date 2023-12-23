@@ -8,7 +8,7 @@ group = 'com.nmz'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+    sourceCompatibility = '21'
 }
 
 repositories {
@@ -21,7 +21,6 @@ dependencies {
     implementation group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: '2022.0.0.0'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.projectlombok:lombok:1.18.28'
     implementation group: 'p6spy', name: 'p6spy', version: '3.9.1'
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
@@ -37,6 +36,8 @@ dependencies {
     implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.15'
     implementation group: 'co.elastic.clients', name: 'elasticsearch-java', version: '8.11.1'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
 
     runtimeOnly 'com.mysql:mysql-connector-j'
 
