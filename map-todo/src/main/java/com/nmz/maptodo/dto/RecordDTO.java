@@ -1,10 +1,5 @@
 package com.nmz.maptodo.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import java.util.List;
 
 /**
@@ -17,5 +12,7 @@ public record RecordDTO (Long userId,
                          String title,
                          Boolean isDelete,
                          Boolean locked,
+                         Long toDoCityId,
+                         Integer toDoDelay,
                          List<RecordDetailDTO> recordDetail){
 }

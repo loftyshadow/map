@@ -1,4 +1,4 @@
-package com.nmz.mapauthserver.exception;
+package com.nmz.mapcommon.exception;
 
 import lombok.Getter;
 

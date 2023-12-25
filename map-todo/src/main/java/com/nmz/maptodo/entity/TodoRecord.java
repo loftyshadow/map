@@ -34,6 +34,14 @@ public class TodoRecord {
     @Column(name = "record_locked")
     private Boolean recordLocked;
 
+    @Schema(name = "待办事项城市id", description = "待办事项城市id", example = "1")
+    @Column(name = "to_do_city_id")
+    private Long toDoCityId;
+
+    @Schema(name = "待办事项延迟时间", description = "待办事项延迟时间", example = "1")
+    @Column(name = "to_do_delay")
+    private Integer toDoDelay;
+
     @Schema(name = "待办事项创建时间", description = "待办事项创建时间", example = "2021-08-12 12:12:12")
     @CreatedDate
     @Column(name = "record_create_time")
@@ -43,6 +51,22 @@ public class TodoRecord {
     @LastModifiedDate
     @Column(name = "record_update_time")
     private Date recordUpdateTime;
+
+    public Integer getToDoDelay() {
+        return toDoDelay;
+    }
+
+    public void setToDoDelay(Integer toDoDelay) {
+        this.toDoDelay = toDoDelay;
+    }
+
+    public Long getToDoCityId() {
+        return toDoCityId;
+    }
+
+    public void setToDoCityId(Long toDoCityId) {
+        this.toDoCityId = toDoCityId;
+    }
 
     public TodoRecordId getId() {
         return id;

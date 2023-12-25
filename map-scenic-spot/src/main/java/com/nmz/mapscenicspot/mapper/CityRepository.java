@@ -1,6 +1,6 @@
 package com.nmz.mapscenicspot.mapper;
 
-import com.nmz.mapscenicspot.entity.CityEntity;
+import com.nmz.mapcommon.entity.CityEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;

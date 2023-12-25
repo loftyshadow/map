@@ -1,5 +1,6 @@
 package com.nmz.mapauthserver.exception;
 
+import com.nmz.mapcommon.exception.BaseException;
 import lombok.Getter;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;

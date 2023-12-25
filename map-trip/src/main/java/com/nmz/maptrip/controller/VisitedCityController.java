@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @Description:
  * @Author: 聂明智
@@ -31,7 +33,7 @@ public class VisitedCityController {
     @Operation( summary = "获取访问过的城市列表",
             description = "获取访问过的城市列表")
     @GetMapping("/list")
-    public Result<Object> getVisitedCityList() {
+    public Result<List<VisitedCityEntity>> getVisitedCityList() {
         Long userId = UserIdContext.getUserId();
         return Result.success(visitedCityService.getVisitedCityList(userId));
     }

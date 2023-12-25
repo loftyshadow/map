@@ -1,12 +1,14 @@
 package com.nmz.mapscenicspot.service.impl;
 
-import com.nmz.mapscenicspot.entity.CityEntity;
+import com.nmz.mapcommon.entity.CityEntity;
 import com.nmz.mapscenicspot.mapper.CityRepository;
-import com.nmz.mapscenicspot.service.CityService;
+import com.nmz.mapcommon.api.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.nmz.mapscenicspot.exception.CityException.CITY_NOT_EXIST_EXCEPTION;
 
 /**
  * @Description:
@@ -18,6 +20,11 @@ import java.util.List;
 public class CityServiceImpl implements CityService {
 
     private final CityRepository cityRepository;
+
+    @Override
+    public CityEntity getCityInfoById(Long cityId) {
+        return cityRepository.findById(cityId).orElseThrow(() -> CITY_NOT_EXIST_EXCEPTION);
+    }
 
     @Override
     public List<CityEntity> getCityList() {
