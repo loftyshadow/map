@@ -31,10 +31,10 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '3.2.0'
     implementation group: 'org.redisson', name: 'redisson-spring-boot-starter', version: '3.25.0'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '3.2.0'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch', version: '3.2.0'
     implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.15'
     implementation group: 'co.elastic.clients', name: 'elasticsearch-java', version: '8.11.1'
+    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '8.11.1'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
