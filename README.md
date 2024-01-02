@@ -29,7 +29,7 @@ map
 ```
 
 - auth-server 模块：提供用户和菜单相关权限的安全校验
-- common 模块：通用模块引入 ThrealLocal 和实现 Spring 的过滤器保存用户的相关信息，减少各服务中的数据交换和调用，将服务间通信的Dubbo 相关接口放在 common 模块中
+- common 模块：通用模块引入 ThreadLocal 和实现 Spring 的过滤器保存用户的相关信息，减少各服务中的数据交换和调用，将服务间通信的Dubbo 相关接口放在 common 模块中
 - gateway模块: 作为系统的网关模块，统一处理跨域问题
 - review模块: 评论模块，引入 elasticsearch 保证搜索的接口效率
 - scenic-spot模块: 景点相关服务，记录景点相关信息
