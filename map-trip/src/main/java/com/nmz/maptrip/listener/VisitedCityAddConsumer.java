@@ -16,6 +16,8 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 
@@ -47,7 +49,7 @@ public class VisitedCityAddConsumer {
         CityEntity cityInfo = cityService.getCityInfoById(cityId);
 
         visitedCity.setVisitedCityId(visitedCityId);
-        visitedCity.setVisitCityTime(new Date());
+        visitedCity.setVisitCityTime(Instant.now().toEpochMilli());
         visitedCity.setVisitedCityName(cityInfo.getCityName());
         visitedCityService.addVisitedCity(visitedCity);
         log.debug("当前时间{}，收到延迟队列的消息{}", new Date(), msg);

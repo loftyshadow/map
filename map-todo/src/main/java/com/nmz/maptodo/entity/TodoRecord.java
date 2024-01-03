@@ -45,12 +45,12 @@ public class TodoRecord {
     @Schema(name = "待办事项创建时间", description = "待办事项创建时间", example = "2021-08-12 12:12:12")
     @CreatedDate
     @Column(name = "record_create_time")
-    private Date recordCreateTime;
+    private Long recordCreateTime;
 
     @Schema(name = "待办事项更新时间", description = "待办事项更新时间", example = "2021-08-12 12:12:12")
     @LastModifiedDate
     @Column(name = "record_update_time")
-    private Date recordUpdateTime;
+    private Long recordUpdateTime;
 
     public Integer getToDoDelay() {
         return toDoDelay;
@@ -100,19 +100,19 @@ public class TodoRecord {
         this.recordLocked = recordLocked;
     }
 
-    public Date getRecordCreateTime() {
+    public Long getRecordCreateTime() {
         return recordCreateTime;
     }
 
-    public void setRecordCreateTime(Date recordCreateTime) {
+    public void setRecordCreateTime(Long recordCreateTime) {
         this.recordCreateTime = recordCreateTime;
     }
 
-    public Date getRecordUpdateTime() {
+    public Long getRecordUpdateTime() {
         return recordUpdateTime;
     }
 
-    public void setRecordUpdateTime(Date recordUpdateTime) {
+    public void setRecordUpdateTime(Long recordUpdateTime) {
         this.recordUpdateTime = recordUpdateTime;
     }
 }

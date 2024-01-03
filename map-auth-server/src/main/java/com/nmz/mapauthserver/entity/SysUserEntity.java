@@ -55,12 +55,12 @@ public class SysUserEntity {
     @Schema(name = "创建时间", description = "创建时间属性", format = "string", example = "2023-09-27 21:14:14")
     @Basic
     @Column(name = "creat_time", nullable = true)
-    private Timestamp creatTime;
+    private Long creatTime;
 
     @Schema(name = "更新时间", description = "更新时间属性", format = "string", example = "2023-09-27")
     @Basic
     @Column(name = "update_time", nullable = true)
-    private Timestamp updateTime;
+    private Long updateTime;
 
     public Long getUserId() {
         return userId;
@@ -110,19 +110,19 @@ public class SysUserEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Timestamp getCreatTime() {
+    public Long getCreatTime() {
         return creatTime;
     }
 
-    public void setCreatTime(Timestamp creatTime) {
+    public void setCreatTime(Long creatTime) {
         this.creatTime = creatTime;
     }
 
-    public Timestamp getUpdateTime() {
+    public Long getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
     }
 

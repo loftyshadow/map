@@ -33,11 +33,11 @@ public class TodoRecordDetail {
 
     @CreatedDate
     @Column(name = "detail_create_time", updatable = false)
-    private Date detailCreateTime;
+    private Long detailCreateTime;
 
     @LastModifiedDate
     @Column(name = "detail_update_time")
-    private Date detailUpdateTime;
+    private Long detailUpdateTime;
 
     public TodoRecordDetailId getId() {
         return id;
@@ -71,19 +71,19 @@ public class TodoRecordDetail {
         this.detailText = detailText;
     }
 
-    public Date getDetailCreateTime() {
+    public Long getDetailCreateTime() {
         return detailCreateTime;
     }
 
-    public void setDetailCreateTime(Date detailCreateTime) {
+    public void setDetailCreateTime(Long detailCreateTime) {
         this.detailCreateTime = detailCreateTime;
     }
 
-    public Date getDetailUpdateTime() {
+    public Long getDetailUpdateTime() {
         return detailUpdateTime;
     }
 
-    public void setDetailUpdateTime(Date detailUpdateTime) {
+    public void setDetailUpdateTime(Long detailUpdateTime) {
         this.detailUpdateTime = detailUpdateTime;
     }
 }

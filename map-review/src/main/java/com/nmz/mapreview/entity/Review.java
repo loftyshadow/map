@@ -33,11 +33,11 @@ public class Review {
 
     @CreatedDate
     @Column(name = "review_create_time", updatable = false)
-    private Date reviewCreateTime;
+    private Long reviewCreateTime;
 
     @LastModifiedDate
     @Column(name = "review_update_time")
-    private Date reviewUpdateTime;
+    private Long reviewUpdateTime;
 
     public String getReviewContent() {
         return reviewContent;
@@ -55,19 +55,19 @@ public class Review {
         this.reviewId = reviewId;
     }
 
-    public Date getReviewCreateTime() {
+    public Long getReviewCreateTime() {
         return reviewCreateTime;
     }
 
-    public void setReviewCreateTime(Date reviewCreateTime) {
+    public void setReviewCreateTime(Long reviewCreateTime) {
         this.reviewCreateTime = reviewCreateTime;
     }
 
-    public Date getReviewUpdateTime() {
+    public Long getReviewUpdateTime() {
         return reviewUpdateTime;
     }
 
-    public void setReviewUpdateTime(Date reviewUpdateTime) {
+    public void setReviewUpdateTime(Long reviewUpdateTime) {
         this.reviewUpdateTime = reviewUpdateTime;
     }
 }

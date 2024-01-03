@@ -26,13 +26,13 @@ public class VisitedCityEntity {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "visit_city_time")
-    private Date visitCityTime;
+    private Long visitCityTime;
 
-    public Date getVisitCityTime() {
+    public Long getVisitCityTime() {
         return visitCityTime;
     }
 
-    public void setVisitCityTime(Date visitCityTime) {
+    public void setVisitCityTime(Long visitCityTime) {
         this.visitCityTime = visitCityTime;
     }
 

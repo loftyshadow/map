@@ -14,6 +14,6 @@ public interface ReviewRepository extends JpaRepository<Review, ReviewId> {
     @Transactional
     @Modifying
     @Query("update Review r set r.reviewContent = ?2, r.reviewUpdateTime = ?3 where r.reviewId=?1")
-    int updateReviewByReviewId(Long reviewId, String reviewContent, Date reviewUpdateTime);
+    int updateReviewByReviewId(Long reviewId, String reviewContent, Long reviewUpdateTime);
 
 }
