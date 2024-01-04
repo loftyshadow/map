@@ -26,4 +26,27 @@ public class ReviewId implements Serializable {
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long reviewId;
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(Long reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public ReviewId() {
+    }
+
+    public ReviewId(Long userId, Long reviewId) {
+        this.userId = userId;
+        this.reviewId = reviewId;
+    }
 }

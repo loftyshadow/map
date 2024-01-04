@@ -1,6 +1,6 @@
 package com.nmz.mapreview.service;
 
-import com.nmz.mapreview.entity.Review;
+import com.nmz.mapreview.entity.ReviewEntity;
 
 /**
  * @Description:
@@ -9,10 +9,10 @@ import com.nmz.mapreview.entity.Review;
  */
 public interface ReviewService {
 
-    void addReview(Review review);
+    void addReview(ReviewEntity review);
 
-    void updateReview(Review review);
+    void updateReview(ReviewEntity review);
 
-    void deleteReview(Review review);
+    void deleteReview(ReviewEntity review);
 
 }

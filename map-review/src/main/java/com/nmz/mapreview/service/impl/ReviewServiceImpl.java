@@ -1,6 +1,6 @@
 package com.nmz.mapreview.service.impl;
 
-import com.nmz.mapreview.entity.Review;
+import com.nmz.mapreview.entity.ReviewEntity;
 import com.nmz.mapreview.mapper.ReviewRepository;
 import com.nmz.mapreview.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +18,17 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
 
     @Override
-    public void addReview(Review review) {
+    public void addReview(ReviewEntity review) {
         reviewRepository.save(review);
     }
 
     @Override
-    public void updateReview(Review review) {
+    public void updateReview(ReviewEntity review) {
         reviewRepository.updateReviewByReviewId(review.getReviewId().getReviewId(), review.getReviewContent(), review.getReviewUpdateTime());
     }
 
     @Override
-    public void deleteReview(Review review) {
+    public void deleteReview(ReviewEntity review) {
         reviewRepository.delete(review);
     }
 }

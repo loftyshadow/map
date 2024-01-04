@@ -1,6 +1,6 @@
 package com.nmz.mapreview.controller;
 
-import com.nmz.mapreview.entity.Review;
+import com.nmz.mapreview.entity.ReviewEntity;
 import com.nmz.mapreview.service.ReviewService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +22,15 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    public void addReview(Review review) {
+    public void addReview(ReviewEntity review) {
         reviewService.addReview(review);
     }
 
-    public void updateReview(Review review) {
+    public void updateReview(ReviewEntity review) {
         reviewService.updateReview(review);
     }
 
-    public void deleteReview(Review review) {
+    public void deleteReview(ReviewEntity review) {
         reviewService.deleteReview(review);
     }
 

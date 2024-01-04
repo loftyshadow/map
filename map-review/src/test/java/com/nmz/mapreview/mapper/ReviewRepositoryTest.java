@@ -2,12 +2,13 @@ package com.nmz.mapreview.mapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * @Description:
@@ -15,14 +16,15 @@ import java.util.Date;
  * @Date: 2024/1/2-23:47
  */
 @SpringBootTest
-@Slf4j
 class ReviewRepositoryTest {
+
+    private static final Logger log = LoggerFactory.getLogger(ReviewRepositoryTest.class);
 
     @Autowired
     ReviewRepository reviewRepository;
 
     @Test
     void updateByReviewId() {
-        reviewRepository.updateByReviewId("test", new Date());
+        reviewRepository.updateReviewByReviewId(1L, "test", Instant.now().toEpochMilli());
     }
 }

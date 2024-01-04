@@ -7,8 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-import java.util.Date;
-
 /**
  * @Description: 旅游过的城市
  * @Author: 聂明智

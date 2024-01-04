@@ -11,8 +11,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
-
 /**
  * @Description: 评论
  * @Author: 聂明智
@@ -22,7 +20,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Schema(title = "评论", description = "用户评论")
 @Table(name = "mapo_review", schema = "map")
-public class Review {
+public class ReviewEntity {
     @EmbeddedId
     private ReviewId reviewId;
 
@@ -69,5 +67,25 @@ public class Review {
 
     public void setReviewUpdateTime(Long reviewUpdateTime) {
         this.reviewUpdateTime = reviewUpdateTime;
+    }
+
+    public ReviewEntity() {
+    }
+
+    public ReviewEntity(ReviewId reviewId, String reviewContent, Long reviewCreateTime, Long reviewUpdateTime) {
+        this.reviewId = reviewId;
+        this.reviewContent = reviewContent;
+        this.reviewCreateTime = reviewCreateTime;
+        this.reviewUpdateTime = reviewUpdateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "ReviewEntity{" +
+                "reviewId=" + reviewId +
+                ", reviewContent='" + reviewContent + '\'' +
+                ", reviewCreateTime=" + reviewCreateTime +
+                ", reviewUpdateTime=" + reviewUpdateTime +
+                '}';
     }
 }
