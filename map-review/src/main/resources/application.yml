@@ -11,6 +11,7 @@ spring:
       - classpath:config/rabbitmq.yml
       - classpath:config/dubbo.yml
       - classpath:config/elasticsearch.yml
+      - classpath:config/flinkcdc.yml
   cloud:
     # nacos服务地址
     nacos:

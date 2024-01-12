@@ -2,7 +2,7 @@
 
 基于 SpringBoot3 + SpringCloudAlibaba2022 + Gradle 的微服务开发脚手架，整合了 SpringSecurity 并引入 JWT 设计 RBAC
 动态权限系统、Nacos 做注册中心 ，Dubbo 作物服务间通信组件，GateWay 做网关采用 JPA + QueryDSL 操作 Mysql 数据库，后台运用
-Redis 做缓存，Redisson 进行数据锁，ElasticSearch 作为搜索引擎，Swagger 3做 Api 文档工具
+Redis 做缓存，Redisson 进行数据锁，ElasticSearch 作为搜索引擎，Flink CDC监听Mysql数据到ES，Swagger 3做 Api 文档工具
 
 ### 目录结果规范
 ![目录结果规范](doc/目录结果规范.png)

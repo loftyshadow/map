@@ -21,6 +21,9 @@ public class RabbitMQQueueConfig {
     //死信交换机名称
     public static final String DEAD_EXCHANGE = "dead_exchange";
 
+    //Canal交换机名称
+    public static final String CANAL_EXCHANGE = "canal_exchange";
+
     //普通队列名称
     public static final String NORMAL_QUEUE = "normal_queue";
 
@@ -29,6 +32,9 @@ public class RabbitMQQueueConfig {
 
     //死信队列名称
     public static final String DEAD_QUEUE = "dead_queue";
+
+    //Canal队列名称
+    public static final String CANAL_QUEUE = "canal_queue";
 
     //通用队列名称
     public static final String COMMON_QUEUE = "common_queue";
@@ -46,6 +52,14 @@ public class RabbitMQQueueConfig {
     public DirectExchange deadExchange(){
 
         return new DirectExchange(DEAD_EXCHANGE);
+
+    }
+
+    //声明canal交换机
+    @Bean("canalExchange")
+    public DirectExchange calExchange(){
+
+        return new DirectExchange(CANAL_EXCHANGE);
 
     }
 
@@ -90,6 +104,12 @@ public class RabbitMQQueueConfig {
         return QueueBuilder.durable(DEAD_QUEUE).build();
     }
 
+    //声明canal队列
+    @Bean("canalQueue")
+    public Queue canalQueue(){
+        return QueueBuilder.durable(CANAL_QUEUE).build();
+    }
+
     //绑定
     @Bean
     public Binding normalQueueBind(@Qualifier("normalQueue")Queue normalQueue,@Qualifier("normalExchange") DirectExchange normalExchange){
@@ -109,5 +129,9 @@ public class RabbitMQQueueConfig {
     @Bean
     public Binding deadQueueBind(@Qualifier("deadQueue")Queue normalQueue,@Qualifier("deadExchange") DirectExchange normalExchange){
         return BindingBuilder.bind(normalQueue).to(normalExchange).with("dead");
+    }
+    @Bean
+    public Binding canalQueueBind(@Qualifier("canalQueue")Queue canalQueue,@Qualifier("canalExchange") DirectExchange canalExchange){
+        return BindingBuilder.bind(canalQueue).to(canalExchange).with("canal");
     }
 }

@@ -19,7 +19,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Schema(title = "评论", description = "用户评论")
-@Table(name = "mapo_review", schema = "map")
+@Table(name = "map_review", schema = "map")
 public class ReviewEntity {
     @EmbeddedId
     private ReviewId reviewId;
