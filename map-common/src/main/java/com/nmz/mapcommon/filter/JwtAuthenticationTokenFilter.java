@@ -27,6 +27,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         //解析token
         Long userId = JwtUtils.getUserId(token);
+        if (userId == null) {
+            //token验证失败
+            return;
+        }
         //存入UserIdContext
         try {
             UserIdContext.setUserId(userId);

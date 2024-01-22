@@ -9,6 +9,7 @@ import com.nmz.mapauthserver.service.AuthService;
 import com.nmz.mapcommon.result.Result;
 import com.nmz.mapauthserver.vo.LoginVO;
 import com.nmz.mapauthserver.vo.RouteRecordRawVO;
+import com.nmz.mapcommon.utils.JacksonUtils;
 import com.nmz.mapcommon.utils.JwtUtils;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -24,10 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.nmz.mapauthserver.constant.RedisConstantKey.REDIS_LOGIN_KEY;
+import static com.nmz.mapauthserver.constant.RedisConstantKey.REDIS_USER_MENU_KEY;
 import static com.nmz.mapauthserver.entity.QSysMenuEntity.sysMenuEntity;
 import static com.nmz.mapauthserver.entity.QSysRoleMenuEntity.sysRoleMenuEntity;
 import static com.nmz.mapauthserver.exception.AuthException.CERTIFICATION_FAILED;
-import static com.nmz.mapauthserver.exception.BaseException.BAD_PARAMETER;
+import static com.nmz.mapcommon.exception.BaseException.BAD_PARAMETER;
 
 /**
  * @Description:
@@ -38,12 +41,11 @@ import static com.nmz.mapauthserver.exception.BaseException.BAD_PARAMETER;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private final ValueOperations<String, Object> valueOperations;
+    private final ValueOperations<String, String> valueOperations;
     private final AuthenticationConfiguration authenticationConfiguration;
     private final SysMenuRepository sysMenuMapper;
     private final SysUserRoleRepository sysUserRoleMapper;
     private final JPAQueryFactory queryFactory;
-    private static final String REDIS_LOGIN_KEY = "login";
 
     @Override
     public Result<LoginVO> login(SysUserEntity user) {
@@ -57,7 +59,7 @@ public class AuthServiceImpl implements AuthService {
         long id = loginUser.getUser().getUserId();
         String token = JwtUtils.createToken((int) id);
         //把完整的用户信息存入redis userid作为key
-        valueOperations.set(REDIS_LOGIN_KEY + id, loginUser);
+        valueOperations.set(REDIS_LOGIN_KEY + id, JacksonUtils.obj2json(loginUser));
         return Result.success("登陆成功", new LoginVO(token));
     }
 
@@ -79,6 +81,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Result<List<RouteRecordRawVO>> getUserMenu(Long userId) {
+        if (valueOperations.get(REDIS_USER_MENU_KEY + userId) != null) {
+            return Result.success((JacksonUtils.json2list(valueOperations.get(REDIS_USER_MENU_KEY + userId), RouteRecordRawVO.class)));
+        }
         long roleId = sysUserRoleMapper.findByUserId(userId).getRoleId();
         List<Long> menuIds = queryFactory.select(sysRoleMenuEntity.menuId).from(sysRoleMenuEntity).where(sysRoleMenuEntity.roleId.eq(roleId)).fetch();
         Predicate p = sysMenuEntity.menuId.in(menuIds).and(sysMenuEntity.parentId.eq(0L));
@@ -91,6 +96,7 @@ public class AuthServiceImpl implements AuthService {
         for (SysMenuEntity menu : menus) {
             finalMenus.add(getChildrenMenu(menu));
         }
+        valueOperations.set(REDIS_USER_MENU_KEY + userId, JacksonUtils.obj2json(finalMenus));
         return Result.success(finalMenus);
     }
 

@@ -2,11 +2,14 @@ package com.nmz.mapcommon.utils;
 
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 
@@ -55,6 +58,8 @@ public class JwtUtils {
     //从token字符串获取userid
     public static Long getUserId(String token) {
         try {
+            if (!verifyToken(token))
+                return null;
             if (!StringUtils.hasLength(token))
                 return null;
             return JWT.decode(token)
@@ -74,8 +79,21 @@ public class JwtUtils {
             return JWT.decode(token)
                     .getClaim("userId").asString();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("token验证失败");
             return null;
+        }
+    }
+
+    // 验证单JWT token
+    public static boolean verifyToken(String token){
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(TOKEN_SIGN_KEY);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            verifier.verify(token);
+            return true;
+        } catch (JWTVerificationException e) {
+            log.error("token验证失败");
+            return false;
         }
     }
 

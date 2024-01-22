@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
@@ -29,7 +30,7 @@ import java.util.TimeZone;
  */
 public class JacksonUtils {
 
-    static final Logger LOG = LoggerFactory.getLogger(JacksonUtils.class);
+    static final Logger log = LoggerFactory.getLogger(JacksonUtils.class);
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
@@ -54,10 +55,14 @@ public class JacksonUtils {
      * @param entity 实体对象
      * @param <T>    泛型
      * @return json string
-     * @throws JsonProcessingException JsonProcessingException
      */
-    public static <T> String obj2json(T entity) throws JsonProcessingException {
-        return MAPPER.writeValueAsString(entity);
+    public static <T> String obj2json(T entity) {
+        try {
+            return MAPPER.writeValueAsString(entity);
+        } catch (JsonProcessingException e) {
+            log.error("将实体对象转换为json字符串失败{}", e.getLocalizedMessage());
+        }
+        return "";
     }
 
     /**
@@ -67,13 +72,17 @@ public class JacksonUtils {
      * @param pretty 是否转换为美观格式
      * @param <T>    泛型
      * @return json string
-     * @throws JsonProcessingException JsonProcessingException
      */
-    public static <T> String obj2json(T entity, boolean pretty) throws JsonProcessingException {
-        if (pretty) {
-            return MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(entity);
+    public static <T> String obj2json(T entity, boolean pretty) {
+        try {
+            if (pretty) {
+                return MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(entity);
+            }
+            return MAPPER.writeValueAsString(entity);
+        } catch (JsonProcessingException e) {
+            log.error("将实体对象转换为json字符串失败{}", e.getLocalizedMessage());
         }
-        return MAPPER.writeValueAsString(entity);
+        return "";
     }
 
     /**
@@ -82,10 +91,14 @@ public class JacksonUtils {
      * @param entity 实体对象
      * @param <T>    泛型
      * @return json string
-     * @throws JsonProcessingException JsonProcessingException
      */
-    public static <T> byte[] obj2jsonBytes(T entity) throws JsonProcessingException {
-        return MAPPER.writeValueAsBytes(entity);
+    public static <T> byte[] obj2jsonBytes(T entity) {
+        try {
+            return MAPPER.writeValueAsBytes(entity);
+        } catch (JsonProcessingException e) {
+            log.error("将实体对象转换为字节数组失败{}", e.getLocalizedMessage());
+        }
+        return new byte[0];
     }
 
     /**
@@ -113,11 +126,11 @@ public class JacksonUtils {
             try {
                 boolean success = file.createNewFile();
                 if (!success) {
-                    LOG.error("[write2jsonFile]-创建文件失败！路径：{}", filepath);
+                    log.error("[write2jsonFile]-创建文件失败！路径：{}", filepath);
                     return false;
                 }
             } catch (IOException e) {
-                LOG.error("[write2jsonFile]-创建文件失败！路径：{}，失败原因：{}", filepath, e.getMessage());
+                log.error("[write2jsonFile]-创建文件失败！路径：{}，失败原因：{}", filepath, e.getMessage());
                 return false;
             }
         }
@@ -137,7 +150,7 @@ public class JacksonUtils {
             MAPPER.writeValue(file, entity);
             return true;
         } catch (IOException e) {
-            LOG.error("[write2jsonFile]-写入文件失败！路径：{}，失败原因：{}", file.getAbsolutePath(), e.getMessage());
+            log.error("[write2jsonFile]-写入文件失败！路径：{}，失败原因：{}", file.getAbsolutePath(), e.getMessage());
         }
         return false;
     }
@@ -149,10 +162,14 @@ public class JacksonUtils {
      * @param type 实体对象类型
      * @param <T>  泛型
      * @return 转换成功后的对象
-     * @throws JsonProcessingException JsonProcessingException
      */
-    public static <T> T json2obj(String json, Class<T> type) throws JsonProcessingException {
-        return MAPPER.readValue(json, type);
+    public static <T> T json2obj(String json, Class<T> type) {
+        try {
+            return MAPPER.readValue(json, type);
+        } catch (JsonProcessingException e) {
+            log.error("将json字符串转换为实体类对象失败{}", e.getLocalizedMessage());
+        }
+        return null;
     }
 
     /**
@@ -160,11 +177,14 @@ public class JacksonUtils {
      *
      * @param json json字符串
      * @return Map
-     * @throws JsonProcessingException JsonProcessingException
      */
-    @SuppressWarnings("unchecked")
-    public static Map<String, Object> json2map(String json) throws JsonProcessingException {
-        return (Map<String, Object>) MAPPER.readValue(json, Map.class);
+    public static Map<String, Object> json2map(String json) {
+        try {
+            return (Map<String, Object>) MAPPER.readValue(json, Map.class);
+        } catch (JsonProcessingException e) {
+            log.error("将实体对象转换为json字符串失败{}", e.getLocalizedMessage());
+        }
+        return Collections.emptyMap();
     }
 
 
@@ -179,10 +199,14 @@ public class JacksonUtils {
      * @param type type
      * @param <T>  泛化
      * @return T
-     * @throws JsonProcessingException JsonProcessingException
      */
-    public static <T> T genericConvert(String json, TypeReference<T> type) throws JsonProcessingException {
-        return MAPPER.readValue(json, type);
+    public static <T> T genericConvert(String json, TypeReference<T> type) {
+        try {
+            return MAPPER.readValue(json, type);
+        } catch (JsonProcessingException e) {
+            log.error("泛化转换失败{}", e.getLocalizedMessage());
+        }
+        return null;
     }
 
 
@@ -207,8 +231,13 @@ public class JacksonUtils {
      * @return 实体类对象
      * @throws IOException IOException
      */
-    public static <T> T file2obj(File file, Class<T> type) throws IOException {
-        return MAPPER.readValue(file, type);
+    public static <T> T file2obj(File file, Class<T> type) {
+        try {
+            return MAPPER.readValue(file, type);
+        } catch (IOException e) {
+            log.error("将文件内容转为实体类对象失败{}", e.getLocalizedMessage());
+        }
+        return null;
     }
 
     /**
@@ -220,8 +249,13 @@ public class JacksonUtils {
      * @return 实体类对象
      * @throws IOException IOException
      */
-    public static <T> T urlResource2obj(URL url, Class<T> type) throws IOException {
-        return MAPPER.readValue(url, type);
+    public static <T> T urlResource2obj(URL url, Class<T> type) {
+        try {
+            return MAPPER.readValue(url, type);
+        } catch (IOException e) {
+            log.error("将url指向的资源转换为实体类对象失败{}", e.getLocalizedMessage());
+        }
+        return null;
     }
 
     /**
@@ -231,11 +265,15 @@ public class JacksonUtils {
      * @param type 实体对象类型
      * @param <T>  泛型
      * @return list集合
-     * @throws JsonProcessingException JsonProcessingException
      */
-    public static <T> List<T> json2list(String json, Class<T> type) throws JsonProcessingException {
+    public static <T> List<T> json2list(String json, Class<T> type) {
         CollectionType collectionType = MAPPER.getTypeFactory().constructCollectionType(List.class, type);
-        return MAPPER.readValue(json, collectionType);
+        try {
+            return MAPPER.readValue(json, collectionType);
+        } catch (JsonProcessingException e) {
+            log.error("将json字符串转换为实体类集合失败{}", e.getLocalizedMessage());
+        }
+        return Collections.emptyList();
     }
 
 
@@ -244,10 +282,14 @@ public class JacksonUtils {
      *
      * @param json json字符串
      * @return JsonNode对象
-     * @throws JsonProcessingException JsonProcessingException
      */
-    public static JsonNode json2node(String json) throws JsonProcessingException {
-        return MAPPER.readTree(json);
+    public static JsonNode json2node(String json) {
+        try {
+            return MAPPER.readTree(json);
+        } catch (JsonProcessingException e) {
+            log.error("将实体对象转换为json字符串失败{}", e.getLocalizedMessage());
+        }
+        return null;
     }
 
 
@@ -262,8 +304,8 @@ public class JacksonUtils {
             MAPPER.readTree(str);
             return true;
         } catch (Exception e) {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("[isJsonString]-检查字符串是否是json格式...{}", e.getMessage());
+            if (log.isDebugEnabled()) {
+                log.debug("[isJsonString]-检查字符串是否是json格式...{}", e.getMessage());
             }
             return false;
         }
