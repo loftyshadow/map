@@ -19,23 +19,23 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //获取token
+        // 获取token
         String token = request.getHeader("Authorization");
         if (!StringUtils.hasText(token)) {
-            //放行
+            // 放行
             filterChain.doFilter(request, response);
             return;
         }
-        //解析token
+        // 解析token
         Long userId = JwtUtils.getUserId(token);
         if (userId == null) {
-            //token验证失败
+            // token验证失败
             return;
         }
-        //存入SecurityContextHolder,principal设置为userId
+        // 存入SecurityContextHolder,principal设置为userId
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, null, null);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        //放行
+        // 放行
         filterChain.doFilter(request, response);
     }
 
