@@ -4,8 +4,8 @@
 动态权限系统、Nacos 做注册中心 ，Dubbo 作物服务间通信组件，GateWay 做网关采用 JPA + QueryDSL 操作 Mysql 数据库，后台运用
 Redis 做缓存，Redisson 进行数据锁，ElasticSearch 作为搜索引擎，Flink CDC监听Mysql数据到ES，Swagger 3做 Api 文档工具
 
-### 目录结果规范
-![目录结果规范](doc/目录结果规范.png)
+### 目录结构规范
+![目录结构规范](doc/目录结构规范.png)
 - VO（View Object）：显示层对象，通常是 Web 向模板渲染引擎层传输的对象。
 - DTO（Data Transfer Object）：数据传输对象，前端像后台进行传输的对象，类似于param。
 - BO（Business Object）：业务对象，内部业务对象，只在内部传递，不对外进行传递。
