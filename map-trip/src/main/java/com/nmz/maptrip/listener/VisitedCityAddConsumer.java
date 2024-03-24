@@ -11,6 +11,7 @@ import com.nmz.maptrip.entity.VisitedCityId;
 import com.nmz.maptrip.service.VisitedCityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -33,6 +34,7 @@ public class VisitedCityAddConsumer {
 
     private final VisitedCityService visitedCityService;
 
+    @DubboReference
     private CityService cityService;
 
     @RabbitListener(queues = DelayedQueueConfig.DELAYED_QUEUE_NAME)

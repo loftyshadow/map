@@ -4,6 +4,7 @@ import com.nmz.mapcommon.entity.CityEntity;
 import com.nmz.mapscenicspot.mapper.CityRepository;
 import com.nmz.mapcommon.api.CityService;
 import lombok.RequiredArgsConstructor;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import static com.nmz.mapscenicspot.exception.CityException.CITY_NOT_EXIST_EXCEP
  */
 @Service
 @RequiredArgsConstructor
+@DubboService
 public class CityServiceImpl implements CityService {
 
     private final CityRepository cityRepository;
