@@ -1,9 +1,7 @@
 package com.nmz.maptrip.listener;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nmz.mapcommon.api.CityService;
 import com.nmz.mapcommon.config.DelayedQueueConfig;
-import com.nmz.mapcommon.context.UserIdContext;
 import com.nmz.mapcommon.entity.CityEntity;
 import com.nmz.mapcommon.utils.JacksonUtils;
 import com.nmz.maptrip.entity.VisitedCityEntity;
@@ -12,13 +10,11 @@ import com.nmz.maptrip.service.VisitedCityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 
@@ -38,7 +34,7 @@ public class VisitedCityAddConsumer {
     private CityService cityService;
 
     @RabbitListener(queues = DelayedQueueConfig.DELAYED_QUEUE_NAME)
-    private void receiveDelayQueue(Message message) throws JsonProcessingException {
+    private void receiveDelayQueue(Message message) {
         String msg = new String(message.getBody());
         Map<String, Object> map = JacksonUtils.json2map(msg);
         VisitedCityEntity visitedCity = new VisitedCityEntity();

@@ -6,6 +6,6 @@ dubbo: # dubbo配置
     port: -1
     name: dubbo # dubbo服务协议名称
   registry: # dubbo使用的注册中心
-    address: nacos://192.168.1.14:8848 # dubbo注册中心地址
+    address: nacos://192.168.1.44:8848 # dubbo注册中心地址
   monitor:
     protocol: registry

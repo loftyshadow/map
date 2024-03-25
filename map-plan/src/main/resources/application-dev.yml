@@ -1,0 +1,7 @@
+spring:
+  config:
+    import:
+      - classpath:config/db.yml
+      - classpath:config/kvrocks.yml
+      - classpath:config/rabbitmq.yml
+      - classpath:config/dubbo.yml

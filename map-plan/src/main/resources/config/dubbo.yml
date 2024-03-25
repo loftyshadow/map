@@ -1,0 +1,11 @@
+dubbo: # dubbo配置
+  application:
+    name: map-todo # dubbo服务名称
+  #Dubbo服务暴露的协议配置，其中子属性name为协议名称，port为协议端口（-1 表示自增端口，从 20880 开始）
+  protocol:
+    port: -1
+    name: dubbo # dubbo服务协议名称
+  registry: # dubbo使用的注册中心
+    address: nacos://192.168.1.44:8848 # dubbo注册中心地址
+  monitor:
+    protocol: registry
