@@ -2,7 +2,7 @@ package com.nmz.maptodo;
 import com.nmz.maptodo.entity.PlanRecordDetail;
 import com.nmz.maptodo.entity.PlanRecordDetailId;
 
-import com.nmz.maptodo.mapper.TodoRecordDetailRepository;
+import com.nmz.maptodo.mapper.PlanRecordDetailRepository;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ class MapTodoApplicationTests {
     private static final Logger log = LoggerFactory.getLogger(MapTodoApplicationTests.class);
 
     @Autowired
-    TodoRecordDetailRepository todoRecordDetailRepository;
+    PlanRecordDetailRepository todoRecordDetailRepository;
 
     @Test
     void contextLoads() {

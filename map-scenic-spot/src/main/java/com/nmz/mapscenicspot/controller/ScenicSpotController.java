@@ -2,7 +2,6 @@ package com.nmz.mapscenicspot.controller;
 
 import com.nmz.mapscenicspot.dto.ScenicSpotDTO;
 import com.nmz.mapscenicspot.service.ScenicSpotService;
-import com.nmz.mapscenicspot.service.ScenicSpotTypeService;
 import com.nmz.mapscenicspot.vo.ScenicSpotVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 
 /**
  * @Description:

@@ -24,7 +24,7 @@ map
 │─map-gateway -- 网关服务
 │─map-review -- 评论服务
 │─map-scenic-spot -- 景点服务
-│─map-todo -- 待办事项服务
+│─map-plan -- 行程服务
 │─map-trip -- 旅游记录服务
 ```
 
@@ -33,7 +33,7 @@ map
 - gateway模块: 作为系统的网关模块，统一处理跨域问题
 - review模块: 评论模块，引入 elasticsearch 保证搜索的接口效率
 - scenic-spot模块: 景点相关服务，记录景点相关信息
-- todo 模块：待进行的旅游记录，引入 Redisson 将用户 id和 todoId 作为资源进行锁操作，防止信息修改时出现问题，通过延迟队列实现计划旅游的相关功能
+- plan 模块：待进行的旅游记录，引入 Redisson 将用户 id和 todoId 作为资源进行锁操作，防止信息修改时出现问题，通过消费kvrocks内的zset实现计划旅游的相关功能
 - trip模块: 旅游记录模块，记录用户的旅游记录
 
 

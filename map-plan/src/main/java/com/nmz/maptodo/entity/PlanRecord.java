@@ -36,6 +36,10 @@ public class PlanRecord {
     @Column(name = "plan_city_id")
     private Long planCityId;
 
+    @Schema(name = "待办事项状态", description = "待办事项状态", example = "1")
+    @Column(name = "plan_status")
+    private Integer planStatus;
+
     @Schema(name = "待办事项延迟时间", description = "待办事项延迟时间", example = "1")
     @Column(name = "plan_delay")
     private Integer planDelay;
@@ -49,6 +53,14 @@ public class PlanRecord {
     @LastModifiedDate
     @Column(name = "record_update_time")
     private Long recordUpdateTime;
+
+    public Integer getPlanStatus() {
+        return planStatus;
+    }
+
+    public void setPlanStatus(Integer planStatus) {
+        this.planStatus = planStatus;
+    }
 
     public Integer getPlanDelay() {
         return planDelay;

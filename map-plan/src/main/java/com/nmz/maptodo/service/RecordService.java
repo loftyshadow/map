@@ -9,7 +9,7 @@ import com.nmz.maptodo.dto.RecordDTO;
  */
 public interface RecordService {
 
-    void addRecord(RecordDTO recordDTO, Long userId);
+    Long addRecord(RecordDTO recordDTO, Long userId);
 
     void updateRecord(RecordDTO recordDTO, Long todoId);
 }

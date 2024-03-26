@@ -13,6 +13,6 @@ public record RecordDTO (Long userId,
                          Boolean isDelete,
                          Boolean locked,
                          Long toDoCityId,
-                         Integer toDoDelay,
+                         Integer planDelay,
                          List<RecordDetailDTO> recordDetail){
 }

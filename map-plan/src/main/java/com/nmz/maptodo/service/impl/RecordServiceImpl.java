@@ -7,8 +7,8 @@ import com.nmz.maptodo.entity.PlanRecordDetailId;
 import com.nmz.maptodo.entity.PlanRecordId;
 import com.nmz.maptodo.mapper.RecordDetailMapper;
 import com.nmz.maptodo.mapper.RecordMapper;
-import com.nmz.maptodo.mapper.TodoRecordDetailRepository;
-import com.nmz.maptodo.mapper.TodoRecordRepository;
+import com.nmz.maptodo.mapper.PlanRecordDetailRepository;
+import com.nmz.maptodo.mapper.PlanRecordRepository;
 import com.nmz.maptodo.service.RecordService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.nmz.maptodo.constant.RedissonKeyConstant.TODO_RECORD_REDISSON_KEY;
+import static com.nmz.maptodo.constant.RedissonKeyConstant.PLAN_RECORD_REDISSON_KEY;
 
 /**
  * @Description:
@@ -29,29 +29,32 @@ import static com.nmz.maptodo.constant.RedissonKeyConstant.TODO_RECORD_REDISSON_
 @RequiredArgsConstructor
 public class RecordServiceImpl implements RecordService {
 
-    private final TodoRecordRepository todoRecordRepository;
-    private final TodoRecordDetailRepository todoRecordDetailRepository;
+    private final PlanRecordRepository todoRecordRepository;
+    private final PlanRecordDetailRepository todoRecordDetailRepository;
     private final RecordMapper recordMapper;
     private final RecordDetailMapper recordDetailMapper;
     private final RedissonClient redissonClient;
 
     @Override
     @Transactional
-    public void addRecord(RecordDTO recordDTO, Long userId) {
+    public Long addRecord(RecordDTO recordDTO, Long userId) {
         List<PlanRecordDetail> recordDetailList = recordDetailMapper.toRecordDetailList(recordDTO.recordDetail());
         PlanRecord planRecord = recordMapper.toRecord(recordDTO);
         planRecord.setId(new PlanRecordId(userId, null));
-        PlanRecord save = todoRecordRepository.save(planRecord);
+        PlanRecord record = todoRecordRepository.save(planRecord);
+        Long recordId = record.getId().getRecordId();
         recordDetailList.forEach(recordDetail ->
-                recordDetail.setId(new PlanRecordDetailId(save.getId().getRecordId())));
+                recordDetail.setId(new PlanRecordDetailId(recordId)));
         todoRecordDetailRepository.saveAll(recordDetailList);
+        return recordId;
     }
 
     @Override
     @Transactional
     public void updateRecord(RecordDTO recordDTO, Long todoId) {
         Long userId = recordDTO.userId();
-        String redissonKey = TODO_RECORD_REDISSON_KEY.formatted(userId, todoId);
+        // 加锁
+        String redissonKey = PLAN_RECORD_REDISSON_KEY.formatted(userId, todoId);
         RLock todoRecordLock = redissonClient.getLock(redissonKey);
         todoRecordLock.lock();
         try {

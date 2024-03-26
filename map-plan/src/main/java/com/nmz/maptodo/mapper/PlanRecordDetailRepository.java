@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TodoRecordDetailRepository extends JpaRepository<PlanRecordDetail, PlanRecordDetailId> {
+public interface PlanRecordDetailRepository extends JpaRepository<PlanRecordDetail, PlanRecordDetailId> {
 
     @Query("select t from PlanRecordDetail t where t.id.recordId = ?1 and t.detailIsDelete = false")
     List<PlanRecordDetail> getToDoRecordDetailByRecordId(@NonNull Long recordId);

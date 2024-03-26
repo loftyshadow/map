@@ -5,6 +5,7 @@ import com.nmz.mapcommon.api.HelloService;
 import com.nmz.mapcommon.config.DelayedQueueConfig;
 import com.nmz.mapcommon.context.UserIdContext;
 import com.nmz.mapcommon.result.Result;
+import com.nmz.mapcommon.utils.DateUtils;
 import com.nmz.mapcommon.utils.JacksonUtils;
 import com.nmz.maptodo.dto.RecordDTO;
 import com.nmz.maptodo.service.RecordService;
@@ -13,12 +14,19 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import static com.nmz.maptodo.constant.RedissonKeyConstant.PLAN_RECORD_REDISSON_KEY;
+import static com.nmz.maptodo.constant.RedissonKeyConstant.TIMEOUT_REDISSON_KEY;
 
 /**
  * @Description:
@@ -34,6 +42,7 @@ public class RecordController {
 
     private final RecordService recordService;
     private final RabbitTemplate rabbitTemplate;
+    private final ZSetOperations<String, String> zSetOperations;
 
     @DubboReference
     private HelloService helloService;
@@ -41,15 +50,22 @@ public class RecordController {
     @PostMapping("/add")
     public Result<String> addRecord(@RequestBody RecordDTO recordDTO) throws JsonProcessingException {
         Long userId = UserIdContext.getUserId();
-        recordService.addRecord(recordDTO, userId);
-        Integer delayTime = recordDTO.toDoDelay();
+        Integer delayTime = recordDTO.planDelay();
+        Long recordId = recordService.addRecord(recordDTO, userId);
+        // 将订单号及超时时间添加到zset中
+        zSetOperations.add(TIMEOUT_REDISSON_KEY, PLAN_RECORD_REDISSON_KEY.formatted(userId, recordId), DateUtils.getTimeStamp() + delayTime);
+        return Result.success("添加成功");
+    }
+
+    // 发送MQ实现行程
+    private void sendToMQQueue(RecordDTO recordDTO) {
+        Integer delayTime = recordDTO.planDelay();
         String message = JacksonUtils.obj2json(recordDTO);
         rabbitTemplate.convertAndSend(DelayedQueueConfig.DELAYED_QUEUE_NAME, DelayedQueueConfig.DELAYED_ROUTING_KEY, message, msg -> {
             // 发送消息的时候延迟时长
             msg.getMessageProperties().setDelay(delayTime);
             return msg;
         });
-        return Result.success("添加成功");
     }
 
     @PostMapping("/{planId}")

@@ -8,6 +8,7 @@ package com.nmz.maptodo.constant;
  */
 public class RedissonKeyConstant {
 
-    public static final String TODO_RECORD_REDISSON_KEY = "map-todo: userId: %d, recordId: %d";
+    public static final String PLAN_RECORD_REDISSON_KEY = "map-plan: userId: %d, recordId: %d";
+    public static final String TIMEOUT_REDISSON_KEY = "map-plan: timeout-key";
 
 }
