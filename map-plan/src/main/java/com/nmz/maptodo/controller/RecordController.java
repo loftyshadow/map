@@ -42,7 +42,7 @@ public class RecordController {
 
     private final RecordService recordService;
     private final RabbitTemplate rabbitTemplate;
-    private final ZSetOperations<String, String> zSetOperations;
+    private final ZSetOperations<String, Long> zSetOperations;
 
     @DubboReference
     private HelloService helloService;
@@ -53,7 +53,7 @@ public class RecordController {
         Integer delayTime = recordDTO.planDelay();
         Long recordId = recordService.addRecord(recordDTO, userId);
         // 将订单号及超时时间添加到zset中
-        zSetOperations.add(TIMEOUT_REDISSON_KEY, PLAN_RECORD_REDISSON_KEY.formatted(userId, recordId), DateUtils.getTimeStamp() + delayTime);
+        zSetOperations.add(TIMEOUT_REDISSON_KEY, recordId, DateUtils.getTimeStamp() + delayTime);
         return Result.success("添加成功");
     }
 

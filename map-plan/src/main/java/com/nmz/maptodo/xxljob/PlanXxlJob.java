@@ -38,7 +38,7 @@ import static com.nmz.maptodo.exception.PlanException.PLAN_NOT_EXIST_EXCEPTION;
 @RequiredArgsConstructor
 public class PlanXxlJob {
     private static final Logger logger = LoggerFactory.getLogger(PlanXxlJob.class);
-    private final ZSetOperations<String, String> zSetOperations;
+    private final ZSetOperations<String, Long> zSetOperations;
     private final PlanRecordRepository planRecordRepository;
 
 
@@ -50,10 +50,10 @@ public class PlanXxlJob {
         XxlJobHelper.log("XXL-JOB, 执行plan模块取消定时任务.");
         logger.info("XXL-JOB, 执行plan模块取消定时任务.");
         // 获取所有已超时定时任务
-        Set<String> recordIds = zSetOperations.reverseRange(PLAN_RECORD_REDISSON_KEY, 0, DateUtils.getTimeStamp());
+        Set<Long> recordIds = zSetOperations.reverseRange(PLAN_RECORD_REDISSON_KEY, 0, DateUtils.getTimeStamp());
         if (recordIds != null) {
             recordIds.forEach(recordId -> {
-                        PlanRecord planRecord = planRecordRepository.findByRecordId(Long.valueOf(recordId)).orElseThrow(() -> PLAN_NOT_EXIST_EXCEPTION);
+                        PlanRecord planRecord = planRecordRepository.findByRecordId(recordId).orElseThrow(() -> PLAN_NOT_EXIST_EXCEPTION);
                         planRecord.setPlanStatus(PlanStatusEnum.TIMEOUT.getPlanStatusCode());
                         planRecordRepository.save(planRecord);
                     }

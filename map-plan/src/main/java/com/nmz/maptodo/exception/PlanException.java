@@ -24,4 +24,9 @@ public class PlanException extends BaseException {
     public String getMessage() {
         return message;
     }
+
+    @Override
+    public int getCode() {
+        return code;
+    }
 }
