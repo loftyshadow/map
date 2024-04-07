@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
@@ -16,6 +18,8 @@ import java.util.Objects;
  * @Author: 聂明智
  * @Date: 2023/9/26-17:45
  */
+@Setter
+@Getter
 @Entity
 @Schema(name = "用户角色表")
 @Table(name = "sys_role", schema = "map", catalog = "")
@@ -31,22 +35,6 @@ public class SysRoleEntity {
     @Basic
     @Column(name = "role_name", nullable = true, length = 255)
     private String roleName;
-
-    public long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(long roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
 
     @Override
     public boolean equals(Object o) {

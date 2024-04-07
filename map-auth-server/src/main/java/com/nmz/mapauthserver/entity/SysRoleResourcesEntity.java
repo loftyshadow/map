@@ -8,12 +8,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @Description:
  * @Author: 聂明智
  * @Date: 2023/9/26-17:46
  */
+@Getter
+@Setter
 @Entity
 @Schema(title = "角色权限关联表")
 @Table(name = "sys_role_resources", schema = "map", catalog = "")
@@ -31,22 +35,6 @@ public class SysRoleResourcesEntity {
     @Id
     @Column(name = "role_id", nullable = false)
     private long roleId;
-
-    public long getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(long resourceId) {
-        this.resourceId = resourceId;
-    }
-
-    public long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(long roleId) {
-        this.roleId = roleId;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -8,15 +8,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
+
 
 /**
  * @Description:
  * @Author: 聂明智
  * @Date: 2023/9/27-21:06
  */
-@Data
+@Getter
+@Setter
 @ToString
 @Entity
 @Schema(name = "用户菜单")

@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -17,6 +19,8 @@ import java.util.Objects;
  * @Author: 聂明智
  * @Date: 2023/9/27-21:14
  */
+@Getter
+@Setter
 @Entity
 @Schema(title = "用户信息表")
 @Table(name = "sys_user", schema = "map", catalog = "")
@@ -61,70 +65,6 @@ public class SysUserEntity {
     @Basic
     @Column(name = "update_time", nullable = true)
     private Long updateTime;
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(Boolean delFlag) {
-        this.delFlag = delFlag;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Long getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(Long creatTime) {
-        this.creatTime = creatTime;
-    }
-
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
-    }
 
     @Override
     public boolean equals(Object o) {

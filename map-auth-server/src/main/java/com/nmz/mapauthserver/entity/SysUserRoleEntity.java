@@ -5,15 +5,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @Description:
  * @Author: 聂明智
  * @Date: 2023/9/28-20:42
  */
+@Getter
+@Setter
 @Entity
-@jakarta.persistence.Table(name = "sys_user_role", schema = "map", catalog = "")
-@jakarta.persistence.IdClass(com.nmz.mapauthserver.entity.SysUserRoleEntityPK.class)
+@Table(name = "sys_user_role", schema = "map", catalog = "")
+@IdClass(SysUserRoleEntityPK.class)
 public class SysUserRoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -24,22 +30,6 @@ public class SysUserRoleEntity {
     @Id
     @Column(name = "role_id", nullable = false)
     private long roleId;
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(long roleId) {
-        this.roleId = roleId;
-    }
 
     @Override
     public boolean equals(Object o) {

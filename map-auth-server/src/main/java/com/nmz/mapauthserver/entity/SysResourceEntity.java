@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
@@ -16,6 +18,8 @@ import java.util.Objects;
  * @Author: 聂明智
  * @Date: 2023/9/26-17:45
  */
+@Getter
+@Setter
 @Entity
 @Schema(title = "权限")
 @Table(name = "sys_resource", schema = "map", catalog = "")
@@ -41,38 +45,6 @@ public class SysResourceEntity {
     @Basic
     @Column(name = "resource_method", nullable = true, length = 255)
     private String resourceMethod;
-
-    public long getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(long resourceId) {
-        this.resourceId = resourceId;
-    }
-
-    public String getResourceName() {
-        return resourceName;
-    }
-
-    public void setResourceName(String resourceName) {
-        this.resourceName = resourceName;
-    }
-
-    public String getResourceUrl() {
-        return resourceUrl;
-    }
-
-    public void setResourceUrl(String resourceUrl) {
-        this.resourceUrl = resourceUrl;
-    }
-
-    public String getResourceMethod() {
-        return resourceMethod;
-    }
-
-    public void setResourceMethod(String resourceMethod) {
-        this.resourceMethod = resourceMethod;
-    }
 
     @Override
     public boolean equals(Object o) {

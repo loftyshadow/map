@@ -1,6 +1,8 @@
 package com.nmz.mapauthserver.service.impl;
 
 import com.nmz.mapauthserver.entity.LoginUser;
+import com.nmz.mapauthserver.entity.QSysMenuEntity;
+import com.nmz.mapauthserver.entity.QSysRoleMenuEntity;
 import com.nmz.mapauthserver.entity.SysMenuEntity;
 import com.nmz.mapauthserver.entity.SysUserEntity;
 import com.nmz.mapauthserver.mapper.SysMenuRepository;
@@ -85,11 +87,15 @@ public class AuthServiceImpl implements AuthService {
             return Result.success((JacksonUtils.json2list(valueOperations.get(REDIS_USER_MENU_KEY + userId), RouteRecordRawVO.class)));
         }
         long roleId = sysUserRoleMapper.findByUserId(userId).getRoleId();
-        List<Long> menuIds = queryFactory.select(sysRoleMenuEntity.menuId).from(sysRoleMenuEntity).where(sysRoleMenuEntity.roleId.eq(roleId)).fetch();
-        Predicate p = sysMenuEntity.menuId.in(menuIds).and(sysMenuEntity.parentId.eq(0L));
+        List<Long> menuIds = queryFactory.select(QSysRoleMenuEntity.sysRoleMenuEntity.menuId)
+                .from(QSysRoleMenuEntity.sysRoleMenuEntity)
+                .where(QSysRoleMenuEntity.sysRoleMenuEntity.roleId.eq(roleId))
+                .fetch();
+        Predicate p = QSysMenuEntity.sysMenuEntity.menuId.in(menuIds)
+                .and(QSysMenuEntity.sysMenuEntity.parentId.eq(0L));
         List<SysMenuEntity> menus = queryFactory
-                .select(sysMenuEntity)
-                .from(sysMenuEntity)
+                .select(QSysMenuEntity.sysMenuEntity)
+                .from(QSysMenuEntity.sysMenuEntity)
                 .where(p)
                 .fetch();
         List<RouteRecordRawVO> finalMenus = new ArrayList<>();
