@@ -1,46 +1,8 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.2.0'
-    id 'io.spring.dependency-management' version '1.1.4'
-}
-
-group = 'com.nmz'
-version = '0.0.1-SNAPSHOT'
-
-java {
-    sourceCompatibility = '17'
-}
-
-java {
-    // 配置 Java 插件的相关属性
-}
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
     implementation group: 'com.auth0', name: 'java-jwt', version: '4.4.0'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '3.2.0'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.1.4'
-    implementation group: 'com.querydsl', name: 'querydsl-core', version: '5.0.0'
-    implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.0.0', classifier: 'jakarta'
-    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
-
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
-
-    annotationProcessor 'org.projectlombok:lombok'
-    annotationProcessor group: 'com.querydsl', name: 'querydsl-apt', version: '5.0.0', classifier: 'jakarta'
-    annotationProcessor "jakarta.persistence:jakarta.persistence-api:3.1.0"
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.named('bootBuildImage') {
-    builder = 'paketobuildpacks/builder-jammy-base:latest'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }
