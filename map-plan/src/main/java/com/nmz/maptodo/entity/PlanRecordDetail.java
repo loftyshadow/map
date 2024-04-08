@@ -13,7 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @ToString
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "plan_record_detail", schema = "map")
+@Table(name = "plan_record_detail")
 public class PlanRecordDetail {
     @EmbeddedId
     private PlanRecordDetailId id;

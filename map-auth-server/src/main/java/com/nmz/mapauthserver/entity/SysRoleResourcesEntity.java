@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Schema(title = "角色权限关联表")
-@Table(name = "sys_role_resources", schema = "map", catalog = "")
+@Table(name = "sys_role_resources", catalog = "")
 @IdClass(SysRoleResourcesEntityPK.class)
 public class SysRoleResourcesEntity {
 

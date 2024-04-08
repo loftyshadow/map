@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
  * @Date: 2023/12/17-0:10
  */
 @Entity
-@Table(name = "city", schema = "map", catalog = "")
+@Table(name = "city", catalog = "")
 @Schema(title = "所有的城市", description = "可获取的全部城市，根据父城市id实现层级效果")
 public class CityEntity {
     @Id

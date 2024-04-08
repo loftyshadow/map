@@ -22,7 +22,7 @@ import java.util.Objects;
 @Getter
 @Entity
 @Schema(name = "用户角色表")
-@Table(name = "sys_role", schema = "map", catalog = "")
+@Table(name = "sys_role", catalog = "")
 public class SysRoleEntity {
 
     @Schema(name = "角色ID", description = "角色ID属性", format = "int64", example = "1")

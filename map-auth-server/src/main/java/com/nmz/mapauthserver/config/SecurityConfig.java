@@ -29,7 +29,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     private final JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
-    private final SysUserRepository sysUserMapper;
+    private final SysUserRepository sysUserRepository;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -61,7 +61,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         return username -> {
             //查询用户信息
-            SysUserEntity sysUser = sysUserMapper.findByUserName(username);
+            SysUserEntity sysUser = sysUserRepository.findByUserName(username);
             //如果没有查询到用户就抛出异常
             if (Objects.isNull(sysUser)) {
                 throw USER_NAME_OR_PASSWORD_ERROR;

@@ -23,7 +23,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Schema(name = "用户菜单")
-@Table(name = "sys_menu", schema = "map", catalog = "")
+@Table(name = "sys_menu", catalog = "")
 public class SysMenuEntity {
 
     @Schema(name = "菜单ID")

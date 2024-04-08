@@ -43,7 +43,7 @@ import static com.nmz.mapcommon.exception.BaseException.BAD_PARAMETER;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private final ValueOperations<String, String> valueOperations;
+    private final ValueOperations<String, Object> valueOperations;
     private final AuthenticationConfiguration authenticationConfiguration;
     private final SysMenuRepository sysMenuMapper;
     private final SysUserRoleRepository sysUserRoleMapper;
@@ -84,7 +84,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public Result<List<RouteRecordRawVO>> getUserMenu(Long userId) {
         if (valueOperations.get(REDIS_USER_MENU_KEY + userId) != null) {
-            return Result.success((JacksonUtils.json2list(valueOperations.get(REDIS_USER_MENU_KEY + userId), RouteRecordRawVO.class)));
+            return Result.success((JacksonUtils.json2list((String) valueOperations.get(REDIS_USER_MENU_KEY + userId), RouteRecordRawVO.class)));
         }
         long roleId = sysUserRoleMapper.findByUserId(userId).getRoleId();
         List<Long> menuIds = queryFactory.select(QSysRoleMenuEntity.sysRoleMenuEntity.menuId)

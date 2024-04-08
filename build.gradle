@@ -27,7 +27,7 @@ repositories {
 dependencies {
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
 
@@ -65,9 +65,6 @@ subprojects {
     sourceCompatibility = 21
     targetCompatibility = 21
 
-    // java编译的时候缺省状态下会因为中文字符而失败
-    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
-
     dependencies {
         implementation group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: '2022.0.0.0'
         implementation 'org.springframework.boot:spring-boot-starter'
@@ -93,6 +90,10 @@ subprojects {
         annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    test {
+        useJUnitPlatform()
     }
 
     tasks.withType(JavaCompile).configureEach {

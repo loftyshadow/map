@@ -15,7 +15,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Schema(title = "待办事项")
-@Table(name = "plan_record", schema = "map")
+@Table(name = "plan_record")
 public class PlanRecord {
     @EmbeddedId
     private PlanRecordId id;

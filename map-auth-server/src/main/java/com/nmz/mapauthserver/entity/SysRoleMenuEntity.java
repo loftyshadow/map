@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Schema(title = "角色菜单关联表")
-@Table(name = "sys_role_menu", schema = "map", catalog = "")
+@Table(name = "sys_role_menu", catalog = "")
 @IdClass(SysRoleMenuEntityPK.class)
 public class SysRoleMenuEntity {
 

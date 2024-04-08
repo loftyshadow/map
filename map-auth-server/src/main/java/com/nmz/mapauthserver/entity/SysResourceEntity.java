@@ -22,7 +22,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Schema(title = "权限")
-@Table(name = "sys_resource", schema = "map", catalog = "")
+@Table(name = "sys_resource", catalog = "")
 public class SysResourceEntity {
 
     @Schema(name = "资源ID", description = "资源ID属性", format = "int64", example = "1")

@@ -15,7 +15,7 @@ import org.hibernate.type.SqlTypes;
  */
 @Entity
 @Schema(title = "景点")
-@Table(name = "scenic_spot", schema = "map", catalog = "")
+@Table(name = "scenic_spot", catalog = "")
 public class ScenicSpotEntity {
     @EmbeddedId
     private ScenicSpotId scenicSpotId;

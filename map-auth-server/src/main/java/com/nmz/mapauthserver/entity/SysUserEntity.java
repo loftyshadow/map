@@ -23,7 +23,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Schema(title = "用户信息表")
-@Table(name = "sys_user", schema = "map", catalog = "")
+@Table(name = "sys_user", catalog = "")
 public class SysUserEntity {
     @Schema(name = "用户ID", description = "用户ID属性", format = "int64", example = "1")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

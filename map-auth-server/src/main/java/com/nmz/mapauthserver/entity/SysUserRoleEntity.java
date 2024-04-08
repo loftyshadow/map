@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "sys_user_role", schema = "map", catalog = "")
+@Table(name = "sys_user_role", catalog = "")
 @IdClass(SysUserRoleEntityPK.class)
 public class SysUserRoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
